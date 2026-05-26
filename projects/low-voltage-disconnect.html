@@ -11,7 +11,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=14" />
+    <link rel="stylesheet" href="../styles.css?v=16" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -77,6 +77,67 @@
             suitable for battery-powered systems.
           </p>
         </article>
+
+        <section class="project-deep-dive" aria-labelledby="lvd-how-title">
+          <p class="section-kicker">How It Works</p>
+          <h2 id="lvd-how-title">Engineering notes.</h2>
+          <div class="accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="lvd-problem">
+                Problem
+              </button>
+              <div class="accordion-content" id="lvd-problem">
+                <div class="accordion-inner">
+                  <p>Placeholder: explain the battery over-discharge risk, load behavior, and why automatic cutoff matters.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="lvd-architecture">
+                Architecture
+              </button>
+              <div class="accordion-content" id="lvd-architecture">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe the voltage sensing stage, threshold reference, switching element, and load disconnect path.</p>
+                  <img src="../assets/3-Photoroom.png" alt="3D render placeholder for the low voltage disconnect architecture." />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="lvd-process">
+                Design Process
+              </button>
+              <div class="accordion-content" id="lvd-process">
+                <div class="accordion-inner">
+                  <p>Placeholder: document component selection, threshold calculations, schematic capture, and PCB layout choices.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="lvd-verification">
+                Verification
+              </button>
+              <div class="accordion-content" id="lvd-verification">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe bench testing, input voltage sweeps, cutoff threshold validation, and load behavior.</p>
+                  <pre><code>if battery_voltage &lt; threshold:
+    disconnect_load()</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="lvd-results">
+                Results
+              </button>
+              <div class="accordion-content" id="lvd-results">
+                <div class="accordion-inner">
+                  <p>Placeholder: summarize test results, threshold accuracy, and what changed between prototype iterations.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <aside class="project-facts">
           <dl>
             <div>
@@ -98,7 +159,17 @@
           </dl>
         </aside>
       </section>
+
+      <section class="interactive-demo section-shell" data-demo="placeholder">
+        <div class="section-heading">
+          <p class="section-kicker">Interactive Demo</p>
+          <h2>Cutoff simulator.</h2>
+        </div>
+        <div class="demo-placeholder">
+          <p>Placeholder for a future voltage threshold simulator showing when the load disconnects.</p>
+        </div>
+      </section>
     </main>
-    <script src="../script.js?v=15"></script>
+    <script src="../script.js?v=16"></script>
   </body>
 </html>

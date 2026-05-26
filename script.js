@@ -1,6 +1,7 @@
 const header = document.querySelector(".site-header");
 const themeToggle = document.querySelector(".theme-toggle");
 const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
+const accordions = document.querySelectorAll("[data-accordion]");
 const tactileSurfaces = document.querySelectorAll(".tactile-surface, .work-card");
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
@@ -83,6 +84,97 @@ copyEmailButtons.forEach((button) => {
     }, 1400);
   });
 });
+
+const openAccordionItem = (item, open) => {
+  const trigger = item.querySelector(".accordion-trigger");
+  const content = item.querySelector(".accordion-content");
+
+  if (!trigger || !content) {
+    return;
+  }
+
+  item.classList.toggle("is-open", open);
+  trigger.setAttribute("aria-expanded", String(open));
+  content.style.maxHeight = open ? `${content.scrollHeight}px` : "0px";
+  content.style.opacity = open ? "1" : "0";
+};
+
+accordions.forEach((accordion) => {
+  accordion.querySelectorAll(".accordion-item").forEach((item) => {
+    const trigger = item.querySelector(".accordion-trigger");
+
+    openAccordionItem(item, item.classList.contains("is-open"));
+
+    if (trigger) {
+      trigger.addEventListener("click", () => {
+        openAccordionItem(item, !item.classList.contains("is-open"));
+      });
+    }
+  });
+});
+
+const setupSimilarityDemo = (demo) => {
+  const xRow = demo.querySelector('[data-bit-row="x"]');
+  const wRow = demo.querySelector('[data-bit-row="w"]');
+  const thresholdInput = demo.querySelector("[data-threshold]");
+  const thresholdValue = demo.querySelector("[data-threshold-value]");
+  const matchPattern = demo.querySelector("[data-match-pattern]");
+  const matchCount = demo.querySelector("[data-match-count]");
+  const output = demo.querySelector("[data-output]");
+  const outputNode = demo.querySelector(".output-node");
+
+  if (!xRow || !wRow || !thresholdInput || !thresholdValue || !matchPattern || !matchCount || !output) {
+    return;
+  }
+
+  const createBitButtons = (row, defaults) => {
+    defaults.forEach((value, index) => {
+      const button = document.createElement("button");
+      button.className = "bit-toggle";
+      button.type = "button";
+      button.dataset.bit = String(7 - index);
+      button.setAttribute("aria-pressed", String(Boolean(value)));
+      button.textContent = String(value);
+      button.addEventListener("click", () => {
+        const nextValue = button.getAttribute("aria-pressed") !== "true";
+        button.setAttribute("aria-pressed", String(nextValue));
+        button.textContent = nextValue ? "1" : "0";
+        updateDemo();
+      });
+      row.appendChild(button);
+    });
+  };
+
+  const readBits = (row) =>
+    [...row.querySelectorAll(".bit-toggle")].map((button) =>
+      button.getAttribute("aria-pressed") === "true" ? 1 : 0
+    );
+
+  const updateDemo = () => {
+    const xBits = readBits(xRow);
+    const wBits = readBits(wRow);
+    const matches = xBits.map((bit, index) => (bit === wBits[index] ? 1 : 0));
+    const count = matches.reduce((sum, bit) => sum + bit, 0);
+    const threshold = Number(thresholdInput.value);
+    const result = count >= threshold ? 1 : 0;
+
+    thresholdValue.textContent = String(threshold);
+    matchPattern.textContent = matches.join("");
+    matchCount.textContent = String(count);
+    output.textContent = String(result);
+
+    if (outputNode) {
+      outputNode.classList.toggle("is-high", Boolean(result));
+    }
+  };
+
+  createBitButtons(xRow, [1, 0, 1, 1, 0, 0, 1, 0]);
+  createBitButtons(wRow, [1, 1, 1, 0, 0, 0, 1, 0]);
+  thresholdInput.addEventListener("input", updateDemo);
+  updateDemo();
+};
+
+document.querySelectorAll('[data-demo="similarity"]').forEach(setupSimilarityDemo);
 
 const updateHeaderDepth = () => {
   const scrolled = window.scrollY > 16;

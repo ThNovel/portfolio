@@ -11,7 +11,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=14" />
+    <link rel="stylesheet" href="../styles.css?v=16" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -87,6 +87,67 @@
             tasks by performing comparisons directly in silicon.
           </p>
         </article>
+
+        <section class="project-deep-dive" aria-labelledby="similarity-how-title">
+          <p class="section-kicker">How It Works</p>
+          <h2 id="similarity-how-title">Engineering notes.</h2>
+          <div class="accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="similarity-problem">
+                Problem
+              </button>
+              <div class="accordion-content" id="similarity-problem">
+                <div class="accordion-inner">
+                  <p>Placeholder: explain why comparing vectors directly in hardware can be useful for fast decision-making tasks.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="similarity-architecture">
+                Architecture
+              </button>
+              <div class="accordion-content" id="similarity-architecture">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe the XNOR matching stage, match counter, threshold comparator, output logic, and padframe.</p>
+                  <img src="../assets/5.png" alt="Layout detail placeholder for the Similarity Detector ASIC architecture." />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="similarity-process">
+                Design Process
+              </button>
+              <div class="accordion-content" id="similarity-process">
+                <div class="accordion-inner">
+                  <p>Placeholder: document schematic design, layout hierarchy, routing, and full-chip integration decisions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="similarity-verification">
+                Verification
+              </button>
+              <div class="accordion-content" id="similarity-verification">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe simulation coverage for equal vectors, partial matches, no matches, and threshold edge cases.</p>
+                  <pre><code>matches = popcount(x XNOR w)
+output = matches &gt;= threshold</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="similarity-results">
+                Results
+              </button>
+              <div class="accordion-content" id="similarity-results">
+                <div class="accordion-inner">
+                  <p>Placeholder: summarize final functionality, verified cases, and lessons from physical ASIC layout.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <aside class="project-facts">
           <dl>
             <div>
@@ -112,7 +173,47 @@
           </dl>
         </aside>
       </section>
+
+      <section class="interactive-demo section-shell" data-demo="similarity">
+        <div class="section-heading">
+          <p class="section-kicker">Interactive Demo</p>
+          <h2>Vector similarity logic.</h2>
+        </div>
+        <div class="logic-demo">
+          <div class="bit-controls">
+            <div>
+              <h3>x[7:0]</h3>
+              <div class="bit-row" data-bit-row="x"></div>
+            </div>
+            <div>
+              <h3>w[7:0]</h3>
+              <div class="bit-row" data-bit-row="w"></div>
+            </div>
+            <label class="threshold-control">
+              Threshold b
+              <input type="range" min="0" max="8" value="4" data-threshold />
+              <span data-threshold-value>4</span>
+            </label>
+          </div>
+          <div class="logic-flow" aria-label="Similarity Detector live output">
+            <div class="logic-node">
+              <span>XNOR</span>
+              <strong data-match-pattern>00000000</strong>
+            </div>
+            <div class="logic-wire"></div>
+            <div class="logic-node">
+              <span>Match Count</span>
+              <strong data-match-count>0</strong>
+            </div>
+            <div class="logic-wire"></div>
+            <div class="logic-node output-node">
+              <span>Output</span>
+              <strong data-output>0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-    <script src="../script.js?v=15"></script>
+    <script src="../script.js?v=16"></script>
   </body>
 </html>

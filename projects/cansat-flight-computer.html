@@ -11,7 +11,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=14" />
+    <link rel="stylesheet" href="../styles.css?v=16" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -82,6 +82,65 @@
             integration throughout the project.
           </p>
         </article>
+
+        <section class="project-deep-dive" aria-labelledby="cansat-how-title">
+          <p class="section-kicker">How It Works</p>
+          <h2 id="cansat-how-title">Engineering notes.</h2>
+          <div class="accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="cansat-problem">
+                Problem
+              </button>
+              <div class="accordion-content" id="cansat-problem">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe the mission constraints, subsystem wiring issues, and why a dedicated flight computer PCB was needed.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="cansat-architecture">
+                Architecture
+              </button>
+              <div class="accordion-content" id="cansat-architecture">
+                <div class="accordion-inner">
+                  <p>Placeholder: explain the board-level architecture, connector groups, sensor interfaces, communication headers, and power routing.</p>
+                  <img src="../assets/1.png" alt="Routing view placeholder for the Cansat board architecture." />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="cansat-process">
+                Design Process
+              </button>
+              <div class="accordion-content" id="cansat-process">
+                <div class="accordion-inner">
+                  <p>Placeholder: document schematic capture, connector selection, routing decisions, and design-for-debug choices.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="cansat-verification">
+                Verification
+              </button>
+              <div class="accordion-content" id="cansat-verification">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe continuity checks, subsystem bring-up, and how each connector/interface was validated.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="cansat-results">
+                Results
+              </button>
+              <div class="accordion-content" id="cansat-results">
+                <div class="accordion-inner">
+                  <p>Placeholder: summarize what worked, what changed during testing, and what you would improve in a next revision.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <aside class="project-facts">
           <dl>
             <div>
@@ -99,7 +158,17 @@
           </dl>
         </aside>
       </section>
+
+      <section class="interactive-demo section-shell" data-demo="placeholder">
+        <div class="section-heading">
+          <p class="section-kicker">Interactive Demo</p>
+          <h2>Flight computer explorer.</h2>
+        </div>
+        <div class="demo-placeholder">
+          <p>Placeholder for a future board walkthrough showing connector groups, power paths, and subsystem interfaces.</p>
+        </div>
+      </section>
     </main>
-    <script src="../script.js?v=15"></script>
+    <script src="../script.js?v=16"></script>
   </body>
 </html>

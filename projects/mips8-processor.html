@@ -11,7 +11,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=14" />
+    <link rel="stylesheet" href="../styles.css?v=16" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -86,6 +86,67 @@
             digital logic into a manufacturable integrated circuit.
           </p>
         </article>
+
+        <section class="project-deep-dive" aria-labelledby="mips-how-title">
+          <p class="section-kicker">How It Works</p>
+          <h2 id="mips-how-title">Engineering notes.</h2>
+          <div class="accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="mips-problem">
+                Problem
+              </button>
+              <div class="accordion-content" id="mips-problem">
+                <div class="accordion-inner">
+                  <p>Placeholder: explain the challenge of building a processor below the HDL level, from logic behavior to transistor-level implementation.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="mips-architecture">
+                Architecture
+              </button>
+              <div class="accordion-content" id="mips-architecture">
+                <div class="accordion-inner">
+                  <p>Placeholder: describe the datapath, ALU, control logic, instruction execution flow, and padframe integration.</p>
+                  <img src="../assets/7.png" alt="Layout detail placeholder for the MIPS8 architecture." />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="mips-process">
+                Design Process
+              </button>
+              <div class="accordion-content" id="mips-process">
+                <div class="accordion-inner">
+                  <p>Placeholder: document schematic hierarchy, layout strategy, routing constraints, and padframe assembly.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="mips-verification">
+                Verification
+              </button>
+              <div class="accordion-content" id="mips-verification">
+                <div class="accordion-inner">
+                  <p>Placeholder: explain DRC, ERC, NCC, switch-level simulation, and assertion command files.</p>
+                  <pre><code>assert register_write == expected_value
+assert program_counter == next_instruction</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="mips-results">
+                Results
+              </button>
+              <div class="accordion-content" id="mips-results">
+                <div class="accordion-inner">
+                  <p>Placeholder: summarize executed instructions, verified blocks, and final chip-level integration status.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <aside class="project-facts">
           <dl>
             <div>
@@ -107,7 +168,17 @@
           </dl>
         </aside>
       </section>
+
+      <section class="interactive-demo section-shell" data-demo="placeholder">
+        <div class="section-heading">
+          <p class="section-kicker">Interactive Demo</p>
+          <h2>MIPS8 simulator.</h2>
+        </div>
+        <div class="demo-placeholder">
+          <p>Placeholder for a future instruction-level simulator with registers, datapath state, and step-by-step execution.</p>
+        </div>
+      </section>
     </main>
-    <script src="../script.js?v=15"></script>
+    <script src="../script.js?v=16"></script>
   </body>
 </html>
