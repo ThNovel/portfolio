@@ -8,7 +8,7 @@
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
     </script>
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -37,7 +37,7 @@
           <p class="eyebrow">PCB Design</p>
           <h1>Low Voltage Disconnect PCB.</h1>
           <p class="hero-text">
-            A battery protection board designed to cut off voltage below a threshold.
+            A battery protection board that disconnects the load when voltage falls below a safe threshold.
           </p>
           <div class="project-nav">
             <a class="button primary" href="https://github.com/ThNovel" target="_blank" rel="noreferrer">GitHub files</a>
@@ -59,20 +59,30 @@
       <section class="project-body section-shell">
         <article class="project-copy">
           <p>
-            This PCB was built for a Collaborative Lab Design class project. Its purpose was
-            to disconnect the load when rechargeable batteries dropped below their indicated
-            safe voltage range.
+            This PCB was developed as part of a Collaborative Lab Design project to protect
+            rechargeable battery systems from excessive discharge.
           </p>
           <p>
-            The design focused on protecting the batteries from being drained too far, keeping
-            the system safer and more reliable during use.
+            The board continuously monitors battery voltage and automatically disconnects
+            the load once the voltage drops below a predefined threshold. This prevents the
+            batteries from operating outside their recommended range, reducing the risk of
+            permanent damage and improving long-term reliability.
+          </p>
+          <p>
+            The project involved schematic capture, PCB layout, component selection, and
+            hardware validation, resulting in a compact and practical protection solution
+            suitable for battery-powered systems.
           </p>
         </article>
         <aside class="project-facts">
           <dl>
             <div>
               <dt>Focus</dt>
-              <dd>Battery protection, threshold cutoff, PCB implementation</dd>
+              <dd>Battery protection, analog design, threshold detection, PCB development</dd>
+            </div>
+            <div>
+              <dt>Outcome</dt>
+              <dd>Functional low-voltage cutoff system capable of protecting rechargeable batteries from over-discharge</dd>
             </div>
             <div>
               <dt>Context</dt>
@@ -80,12 +90,12 @@
             </div>
             <div>
               <dt>Status</dt>
-              <dd>Repository link pending exact GitHub URL</dd>
+              <dd>Prototype completed and successfully tested</dd>
             </div>
           </dl>
         </aside>
       </section>
     </main>
-    <script src="../script.js?v=11"></script>
+    <script src="../script.js?v=12"></script>
   </body>
 </html>

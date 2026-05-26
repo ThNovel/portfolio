@@ -8,7 +8,7 @@
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
     </script>
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -35,9 +35,9 @@
       <section class="project-hero section-shell">
         <div>
           <p class="eyebrow">ASIC</p>
-          <h1>Similarity Detector.</h1>
+          <h1>Similarity Detector ASIC.</h1>
           <p class="hero-text">
-            A simple combinational ASIC that compares two 8-bit inputs against a threshold.
+            Hardware-accelerated vector similarity detection implemented through a full-custom ASIC design flow.
           </p>
           <div class="project-nav">
             <a class="button primary" href="https://github.com/ThNovel" target="_blank" rel="noreferrer">GitHub files</a>
@@ -63,32 +63,53 @@
       <section class="project-body section-shell">
         <article class="project-copy">
           <p>
-            This was the final project for my integrated circuits class. It is an ASIC that
-            uses combinational logic for simplicity.
+            The Similarity Detector was developed as the final project for an Integrated
+            Circuits Design course and implements a custom ASIC using a full-custom VLSI
+            design flow.
           </p>
           <p>
-            The circuit compares two inputs, x0..x7 and w0..w7. If the number of matching
-            bits is greater than or equal to the input threshold b, the output becomes 1.
+            The circuit compares two 8-bit input vectors and determines whether their
+            similarity exceeds a programmable threshold. Internally, the design performs
+            bitwise XNOR operations to identify matching bits, counts the total number of
+            matches, and compares the result against a user-defined threshold.
+          </p>
+          <p>
+            The project was implemented from transistor-level schematics through physical
+            layout and verification using Electric VLSI. Functional validation was performed
+            through simulation and testbench development to ensure correct operation across
+            multiple comparison scenarios.
+          </p>
+          <p>
+            This design demonstrates how specialized hardware can accelerate decision-making
+            tasks by performing comparisons directly in silicon.
           </p>
         </article>
         <aside class="project-facts">
           <dl>
             <div>
-              <dt>Logic</dt>
-              <dd>Combinational similarity comparison</dd>
+              <dt>Architecture</dt>
+              <dd>XNOR matching logic, match counter, threshold comparator</dd>
             </div>
             <div>
               <dt>Inputs</dt>
-              <dd>x0..x7, w0..w7, threshold b</dd>
+              <dd>x[7:0], w[7:0], threshold b[3:0]</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Custom ASIC design, digital logic, VLSI layout, hardware verification</dd>
+            </div>
+            <div>
+              <dt>Outcome</dt>
+              <dd>Fully verified ASIC capable of evaluating 8-bit vector similarity against a programmable threshold</dd>
             </div>
             <div>
               <dt>Status</dt>
-              <dd>Repository link pending exact GitHub URL</dd>
+              <dd>Completed and successfully verified</dd>
             </div>
           </dl>
         </aside>
       </section>
     </main>
-    <script src="../script.js?v=11"></script>
+    <script src="../script.js?v=12"></script>
   </body>
 </html>

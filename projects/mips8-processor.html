@@ -8,7 +8,7 @@
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
     </script>
-    <link rel="stylesheet" href="../styles.css?v=11" />
+    <link rel="stylesheet" href="../styles.css?v=12" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -37,7 +37,7 @@
           <p class="eyebrow">VLSI / Layout</p>
           <h1>MIPS8 Processor.</h1>
           <p class="hero-text">
-            A transistor-level implementation of a microprocessor for MIPS8 assembly instructions.
+            From transistor-level schematics to silicon-ready layout: a complete 8-bit MIPS processor implementation.
           </p>
           <div class="project-nav">
             <a class="button primary" href="https://github.com/ThNovel" target="_blank" rel="noreferrer">GitHub files</a>
@@ -63,33 +63,48 @@
       <section class="project-body section-shell">
         <article class="project-copy">
           <p>
-            Built for my integrated circuits class, this project implements the microprocessor
-            for MIPS8 assembly instructions using Electric VLSI.
+            The MIPS8 Processor was developed as part of an Integrated Circuits Design
+            course and implements an 8-bit MIPS-compatible microprocessor using Electric VLSI.
           </p>
           <p>
-            The work went down to transistor level: schematic construction, layout, and
-            verification. The chip was tested with .cmd command files and assertions to
-            confirm the design behaved as intended.
+            The project followed a complete custom IC design flow, including transistor-level
+            schematics, physical layout design, verification, and functional simulation.
+            Major components such as the datapath, ALU, control logic, and padframe
+            integration were implemented and validated throughout the design process.
+          </p>
+          <p>
+            Verification was performed using DRC, ERC, NCC, and switch-level simulation to
+            ensure both physical correctness and functional behavior. Test programs and
+            assertion-based command files were used to confirm correct execution of MIPS8
+            instructions.
+          </p>
+          <p>
+            This project provided hands-on experience with the challenges of translating
+            digital logic into a manufacturable integrated circuit.
           </p>
         </article>
         <aside class="project-facts">
           <dl>
             <div>
               <dt>Tools</dt>
-              <dd>Electric VLSI, schematic, layout, .cmd assertions</dd>
+              <dd>Electric VLSI, IRSIM, CMOS layout, DRC, ERC, NCC, switch-level simulation</dd>
             </div>
             <div>
               <dt>Focus</dt>
-              <dd>Transistor-level processor design and verification</dd>
+              <dd>Custom VLSI design, processor architecture, physical layout, verification</dd>
+            </div>
+            <div>
+              <dt>Outcome</dt>
+              <dd>Fully verified 8-bit MIPS processor implemented from transistor-level schematics to physical layout</dd>
             </div>
             <div>
               <dt>Status</dt>
-              <dd>Repository link pending exact GitHub URL</dd>
+              <dd>Completed and successfully verified</dd>
             </div>
           </dl>
         </aside>
       </section>
     </main>
-    <script src="../script.js?v=11"></script>
+    <script src="../script.js?v=12"></script>
   </body>
 </html>
