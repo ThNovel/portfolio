@@ -1,10 +1,22 @@
 const header = document.querySelector(".site-header");
 const themeToggle = document.querySelector(".theme-toggle");
+const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
 const tactileSurfaces = document.querySelectorAll(".tactile-surface, .work-card");
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
 const waferGrid = document.querySelector(".wafer-die-grid");
 const waferStage = document.querySelector(".wafer-stage");
+
+const getCleanUrl = () => {
+  const cleanPath = window.location.pathname.replace(/index\.html$/, "");
+  return `${window.location.origin}${cleanPath}${window.location.search}`;
+};
+
+const removeHashFromUrl = () => {
+  if (window.location.hash || /index\.html$/.test(window.location.pathname)) {
+    window.history.replaceState(null, "", getCleanUrl());
+  }
+};
 
 if (waferGrid && waferGrid.children.length === 0) {
   for (let i = 0; i < 130; i += 1) {
@@ -33,6 +45,44 @@ if (themeToggle) {
     setTheme(nextTheme);
   });
 }
+
+const copyText = async (text) => {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Fall back below when clipboard permissions are blocked.
+    }
+  }
+
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.setAttribute("readonly", "");
+  textArea.style.position = "fixed";
+  textArea.style.opacity = "0";
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  textArea.remove();
+};
+
+copyEmailButtons.forEach((button) => {
+  const originalText = button.textContent.trim();
+
+  button.addEventListener("click", async () => {
+    try {
+      await copyText(button.dataset.copyEmail);
+      button.textContent = "Copied";
+    } catch (error) {
+      button.textContent = button.dataset.copyEmail;
+    }
+
+    window.setTimeout(() => {
+      button.textContent = originalText;
+    }, 1400);
+  });
+});
 
 const updateHeaderDepth = () => {
   const scrolled = window.scrollY > 16;
@@ -119,4 +169,31 @@ if (heroGlassButton) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    removeHashFromUrl();
+  });
+});
+
+if (window.location.hash) {
+  const target = document.querySelector(window.location.hash);
+
+  if (target) {
+    window.setTimeout(() => {
+      target.scrollIntoView({ block: "start" });
+      removeHashFromUrl();
+    }, 0);
+  }
+} else {
+  removeHashFromUrl();
 }
