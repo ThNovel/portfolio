@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Iker Garcia Morales, Electrical Engineering student focused on integrated circuit design, VLSI, semiconductor systems, PCB design, and chip-level design."
+    />
+    <title>Iker Garcia Morales | Electrical Engineering</title>
+    <link rel="stylesheet" href="styles.css?v=6" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Iker Garcia Morales home">
+        <span class="brand-mark">IG</span>
+        <span>Iker Garcia Morales</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Electrical Engineering Student / Senior Year</p>
+          <h1>Integrated circuits and semiconductor systems.</h1>
+          <p class="hero-text">
+            Working toward transistor and chip-level design.
+          </p>
+          <div class="hero-actions" aria-label="Profile links">
+            <a class="button primary" href="https://github.com/ThNovel" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a class="button secondary" href="https://www.linkedin.com/in/ikermora/" target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a class="button secondary" href="mailto:ikergm@proton.me">
+              Email
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Interactive silicon wafer preview">
+          <div class="wafer-stage" aria-hidden="true">
+            <div class="wafer-disc">
+              <div class="wafer-die-grid"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section-shell">
+        <div class="section-heading">
+          <p class="section-kicker">Selected Work</p>
+          <h2>Projects.</h2>
+        </div>
+
+        <div class="work-grid">
+          <a
+            class="work-card project-bubble bubble-cansat tactile-surface"
+            href="projects/cansat-flight-computer.html"
+            aria-label="Open Cansat Flight Computer PCB project"
+          >
+            <div class="project-visual project-image-card">
+              <img src="assets/2.png" alt="3D render of the Cansat Flight Computer PCB." />
+            </div>
+            <div class="work-card-copy">
+              <p class="tag">PCB Design</p>
+              <h3>Cansat Flight Computer PCB</h3>
+              <p>
+                Plug-and-play flight computer board for a can-sized satellite system.
+              </p>
+              <span class="project-action">Open project</span>
+            </div>
+          </a>
+
+          <a
+            class="work-card project-bubble bubble-lvd tactile-surface"
+            href="projects/low-voltage-disconnect.html"
+            aria-label="Open Low Voltage Disconnect PCB project"
+          >
+            <div class="project-visual project-image-card">
+              <img src="assets/3.png" alt="3D render of the Low Voltage Disconnect PCB." />
+            </div>
+            <div class="work-card-copy">
+              <p class="tag">PCB Design</p>
+              <h3>Low Voltage Disconnect PCB</h3>
+              <p>
+                Battery protection board designed to cut off voltage below a threshold.
+              </p>
+              <span class="project-action">Open project</span>
+            </div>
+          </a>
+
+          <a
+            class="work-card project-bubble bubble-mips tactile-surface"
+            href="projects/mips8-processor.html"
+            aria-label="Open MIPS8 Processor project"
+          >
+            <div class="project-visual project-image-card">
+              <img src="assets/7.png" alt="Layout view of the MIPS8 Processor design." />
+            </div>
+            <div class="work-card-copy">
+              <p class="tag">VLSI / Layout</p>
+              <h3>MIPS8 Processor</h3>
+              <p>
+                Transistor-level schematic and layout for a MIPS8 instruction processor.
+              </p>
+              <span class="project-action">Open project</span>
+            </div>
+          </a>
+
+          <a
+            class="work-card project-bubble bubble-sim tactile-surface"
+            href="projects/similarity-detector.html"
+            aria-label="Open Similarity Detector ASIC project"
+          >
+            <div class="project-visual project-image-card">
+              <img src="assets/5.png" alt="Layout view of the Similarity Detector ASIC." />
+            </div>
+            <div class="work-card-copy">
+              <p class="tag">ASIC</p>
+              <h3>Similarity Detector</h3>
+              <p>
+                Combinational logic ASIC comparing two 8-bit inputs against a threshold.
+              </p>
+              <span class="project-action">Open project</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="about" class="section-shell intro-grid" aria-label="About Iker Mora">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2>Simple, focused, <span class="accent-text">chip-level.</span></h2>
+        </div>
+        <p>
+          Electrical Engineering student focused on Integrated Circuit Design, VLSI,
+          and semiconductor systems. Working toward transistor and chip-level design.
+        </p>
+      </section>
+
+      <section id="expertise" class="section-shell expertise-section">
+        <div class="section-heading">
+          <p class="section-kicker">Expertise</p>
+          <h2>Core focus.</h2>
+        </div>
+        <div class="expertise-grid">
+          <div class="expertise-item">
+            <span>01</span>
+            <h3>VLSI & Chip Design</h3>
+            <p>Integrated circuits, transistor-level design, layout, and verification.</p>
+          </div>
+          <div class="expertise-item">
+            <span>02</span>
+            <h3>PCB Development</h3>
+            <p>Practical boards built around debugging, reliability, and fast iteration.</p>
+          </div>
+          <div class="expertise-item">
+            <span>03</span>
+            <h3>Semiconductor Systems</h3>
+            <p>Semiconductor-aware thinking from logic behavior down to layout details.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section-shell contact-section">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2>Silicon, <span class="accent-text">boards</span>, systems.</h2>
+        </div>
+        <div class="contact-links">
+          <a href="https://github.com/ThNovel" target="_blank" rel="noreferrer">github.com/ThNovel</a>
+          <a href="https://www.linkedin.com/in/ikermora/" target="_blank" rel="noreferrer">linkedin.com/in/ikermora</a>
+          <a href="mailto:ikergm@proton.me">ikergm@proton.me</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Clarity, precision, quiet confidence.</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js?v=6"></script>
+  </body>
+</html>
