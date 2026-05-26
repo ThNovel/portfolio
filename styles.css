@@ -1178,17 +1178,19 @@ h3 {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 18px;
     min-height: auto;
-    padding-top: 52px;
+    padding: 36px 0 64px;
   }
 
   h1 {
-    font-size: clamp(3rem, 14vw, 5rem);
+    max-width: 11ch;
+    font-size: clamp(3rem, 12vw, 4.8rem);
   }
 
   .hero-visual {
-    min-height: 440px;
+    min-height: 380px;
+    order: -1;
   }
 
   .glass-panel {
@@ -1198,9 +1200,10 @@ h3 {
   }
 
   .wafer-stage {
-    inset: 0 auto auto 0;
-    width: 100%;
+    inset: 0 auto auto 50%;
+    width: min(100%, 430px);
     aspect-ratio: 1.05;
+    transform: translateX(-50%);
   }
 
   .floating-spec {
@@ -1227,6 +1230,7 @@ h3 {
 
   .project-bubble {
     max-width: none;
+    width: 100%;
   }
 
   .project-hero,
@@ -1250,6 +1254,20 @@ h3 {
     height: 220px;
   }
 
+  .project-page {
+    padding-bottom: 48px;
+  }
+
+  .project-hero {
+    gap: 26px;
+    padding: 42px 0 28px;
+  }
+
+  .project-media img,
+  .project-gallery img {
+    max-height: 440px;
+  }
+
   .site-footer {
     width: min(100% - 28px, 1120px);
     flex-direction: column;
@@ -1258,48 +1276,111 @@ h3 {
 
 @media (max-width: 560px) {
   .site-header {
-    position: static;
-    align-items: flex-start;
+    position: sticky;
+    align-items: center;
     gap: 12px;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 14px 0;
   }
 
   .nav-links {
     width: 100%;
     justify-content: space-between;
+    order: 2;
   }
 
   .hero {
-    padding-top: 34px;
+    padding-top: 18px;
+  }
+
+  .eyebrow,
+  .section-kicker,
+  .tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    max-width: 10ch;
+    margin-top: 14px;
+    font-size: clamp(2.65rem, 15vw, 4rem);
+    line-height: 0.98;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 11vw, 3.1rem);
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   .hero-actions .button {
-    flex: 1 1 140px;
+    flex: 1 1 104px;
+    min-height: 44px;
+    padding: 0 14px;
   }
 
   .hero-visual {
-    min-height: 360px;
+    min-height: 310px;
   }
 
-  .chip-core {
-    left: 12%;
-    width: 58%;
+  .wafer-stage {
+    width: min(100%, 330px);
   }
 
-  .floating-spec {
-    width: calc(100% - 36px);
+  .work-grid {
+    gap: 12px;
   }
 
-  .project-detail-panel {
-    padding: 26px 18px;
+  .project-bubble {
+    height: 126px;
+    max-height: 126px;
+    border-radius: 28px !important;
+    padding: 16px;
   }
 
-  .detail-close {
-    position: static;
-    margin-bottom: 18px;
+  .project-bubble:hover,
+  .project-bubble:focus-visible,
+  .project-bubble.is-revealed {
+    max-height: 330px;
   }
 
-  .detail-title {
-    margin-right: 0;
+  .project-bubble h3 {
+    max-width: 13rem;
+  }
+
+  .project-bubble:hover .project-visual,
+  .project-bubble:focus-visible .project-visual,
+  .project-bubble.is-revealed .project-visual {
+    max-height: 132px;
+  }
+
+  .intro-grid,
+  .expertise-section,
+  .contact-section {
+    padding: 56px 0;
+  }
+
+  .expertise-item,
+  .project-copy,
+  .project-facts {
+    padding: 22px;
+  }
+
+  .project-copy p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .project-nav .button {
+    flex: 1 1 140px;
+  }
+
+  .project-media img,
+  .project-gallery img {
+    max-height: 340px;
   }
 }
