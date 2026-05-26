@@ -8,7 +8,10 @@
       content="Portfolio of Iker Garcia Morales, Electrical Engineer focused on integrated circuit design, VLSI, computer architecture, PCB design, and custom silicon."
     />
     <title>Iker Garcia Morales | Electrical Engineering</title>
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    </script>
+    <link rel="stylesheet" href="styles.css?v=10" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -195,6 +198,6 @@
       <a href="#top">Back to top</a>
     </footer>
 
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=10"></script>
   </body>
 </html>
