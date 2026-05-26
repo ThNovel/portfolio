@@ -1,4 +1,5 @@
 const header = document.querySelector(".site-header");
+const themeToggle = document.querySelector(".theme-toggle");
 const tactileSurfaces = document.querySelectorAll(".tactile-surface, .work-card");
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
@@ -9,6 +10,28 @@ if (waferGrid && waferGrid.children.length === 0) {
   for (let i = 0; i < 130; i += 1) {
     waferGrid.appendChild(document.createElement("span"));
   }
+}
+
+const setTheme = (theme) => {
+  const isDark = theme === "dark";
+
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("theme", theme);
+
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute("aria-label", isDark ? "Turn off night mode" : "Turn on night mode");
+    themeToggle.querySelector("span").textContent = isDark ? "☀" : "☾";
+  }
+};
+
+setTheme(localStorage.getItem("theme") || "light");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+  });
 }
 
 const updateHeaderDepth = () => {
