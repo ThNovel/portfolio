@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Similarity Detector ASIC project by Iker Garcia Morales." />
+    <title>Similarity Detector | Iker Garcia Morales</title>
+    <link rel="stylesheet" href="../styles.css?v=8" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="../index.html#top" aria-label="Iker Garcia Morales home">
+        <span class="brand-mark">IGM</span>
+        <span>Iker Garcia Morales</span>
+      </a>
+      <nav class="nav-links" aria-label="Project navigation">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">Me</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="project-page">
+      <section class="project-hero section-shell">
+        <div>
+          <p class="eyebrow">ASIC</p>
+          <h1>Similarity Detector.</h1>
+          <p class="hero-text">
+            A simple combinational ASIC that compares two 8-bit inputs against a threshold.
+          </p>
+          <div class="project-nav">
+            <a class="button primary" href="https://github.com/ThNovel" target="_blank" rel="noreferrer">GitHub files</a>
+            <a class="button secondary" href="../index.html#work">Back to projects</a>
+          </div>
+        </div>
+        <div class="project-media">
+          <img src="../assets/5.png" alt="Layout view of the Similarity Detector ASIC." />
+        </div>
+      </section>
+
+      <section class="project-gallery section-shell" aria-label="Similarity Detector ASIC images">
+        <figure>
+          <img src="../assets/4.png" alt="Early layout view of the Similarity Detector ASIC." />
+          <figcaption>Layout overview</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/5.png" alt="Detailed routed layout view of the Similarity Detector ASIC." />
+          <figcaption>Routed layout detail</figcaption>
+        </figure>
+      </section>
+
+      <section class="project-body section-shell">
+        <article class="project-copy">
+          <p>
+            This was the final project for my integrated circuits class. It is an ASIC that
+            uses combinational logic for simplicity.
+          </p>
+          <p>
+            The circuit compares two inputs, x0..x7 and w0..w7. If the number of matching
+            bits is greater than or equal to the input threshold b, the output becomes 1.
+          </p>
+        </article>
+        <aside class="project-facts">
+          <dl>
+            <div>
+              <dt>Logic</dt>
+              <dd>Combinational similarity comparison</dd>
+            </div>
+            <div>
+              <dt>Inputs</dt>
+              <dd>x0..x7, w0..w7, threshold b</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Repository link pending exact GitHub URL</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+    <script src="../script.js?v=8"></script>
+  </body>
+</html>
