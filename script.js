@@ -176,6 +176,87 @@ const setupSimilarityDemo = (demo) => {
 
 document.querySelectorAll('[data-demo="similarity"]').forEach(setupSimilarityDemo);
 
+const setupLvdDemo = (demo) => {
+  const threshold = 11;
+  const slider = demo.querySelector("[data-lvd-slider]");
+  const voltageText = demo.querySelector("[data-lvd-voltage]");
+  const statusVoltage = demo.querySelector("[data-lvd-status-voltage]");
+  const percentText = demo.querySelector("[data-lvd-percent]");
+  const fill = demo.querySelector("[data-lvd-fill]");
+  const status = demo.querySelector("[data-lvd-status]");
+  const explanation = demo.querySelector("[data-lvd-explanation]");
+  const startButton = demo.querySelector("[data-lvd-start]");
+  const pauseButton = demo.querySelector("[data-lvd-pause]");
+  const resetButton = demo.querySelector("[data-lvd-reset]");
+  let dischargeTimer;
+
+  if (!slider || !voltageText || !statusVoltage || !percentText || !fill || !status || !explanation) {
+    return;
+  }
+
+  const setVoltage = (value) => {
+    const voltage = Math.max(8, Math.min(13, Number(value)));
+    const percentage = Math.round(((voltage - 8) / 5) * 100);
+    const connected = voltage >= threshold;
+    const formattedVoltage = voltage.toFixed(1);
+
+    slider.value = formattedVoltage;
+    voltageText.textContent = formattedVoltage;
+    statusVoltage.textContent = formattedVoltage;
+    percentText.textContent = `${percentage}%`;
+    fill.style.height = `${percentage}%`;
+    status.textContent = connected ? "CONNECTED" : "DISCONNECTED";
+    explanation.textContent = connected
+      ? "The battery remains within its safe operating range. The load stays connected."
+      : "The battery has fallen below the protection threshold. The Low Voltage Disconnect isolates the load to prevent over-discharge.";
+
+    demo.classList.toggle("is-connected", connected);
+    demo.classList.toggle("is-disconnected", !connected);
+  };
+
+  const pauseDischarge = () => {
+    window.clearInterval(dischargeTimer);
+    dischargeTimer = undefined;
+  };
+
+  slider.addEventListener("input", () => {
+    pauseDischarge();
+    setVoltage(slider.value);
+  });
+
+  if (startButton) {
+    startButton.addEventListener("click", () => {
+      if (dischargeTimer) {
+        return;
+      }
+
+      dischargeTimer = window.setInterval(() => {
+        const nextVoltage = Number(slider.value) - 0.1;
+        setVoltage(nextVoltage);
+
+        if (nextVoltage <= 8) {
+          pauseDischarge();
+        }
+      }, 420);
+    });
+  }
+
+  if (pauseButton) {
+    pauseButton.addEventListener("click", pauseDischarge);
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      pauseDischarge();
+      setVoltage(12);
+    });
+  }
+
+  setVoltage(slider.value);
+};
+
+document.querySelectorAll('[data-demo="lvd"]').forEach(setupLvdDemo);
+
 const updateHeaderDepth = () => {
   const scrolled = window.scrollY > 16;
   header.style.filter = scrolled ? "drop-shadow(0 12px 28px rgba(9, 9, 9, 0.08))" : "none";

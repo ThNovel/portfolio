@@ -11,7 +11,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=18" />
+    <link rel="stylesheet" href="../styles.css?v=19" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -160,16 +160,71 @@
         </aside>
       </section>
 
-      <section class="interactive-demo section-shell" data-demo="placeholder">
+      <section class="interactive-demo section-shell" data-demo="lvd">
         <div class="section-heading">
           <p class="section-kicker">Interactive Demo</p>
-          <h2>Cutoff simulator.</h2>
+          <h2>Cutoff Simulator.</h2>
+          <p class="section-intro">
+            Simulate how the Low Voltage Disconnect protects rechargeable batteries from over-discharge.
+          </p>
         </div>
-        <div class="demo-placeholder">
-          <p>Placeholder for a future voltage threshold simulator showing when the load disconnects.</p>
+        <div class="cutoff-demo">
+          <div class="voltage-panel">
+            <p class="demo-label">Battery Voltage</p>
+            <strong><span data-lvd-voltage>12.0</span> V</strong>
+            <input
+              type="range"
+              min="8"
+              max="13"
+              step="0.1"
+              value="12"
+              aria-label="Battery voltage"
+              data-lvd-slider
+            />
+            <div class="auto-controls" aria-label="Auto discharge controls">
+              <button type="button" data-lvd-start>Start</button>
+              <button type="button" data-lvd-pause>Pause</button>
+              <button type="button" data-lvd-reset>Reset</button>
+            </div>
+          </div>
+
+          <div class="circuit-visual" aria-label="Low Voltage Disconnect circuit simulation">
+            <div class="battery-shell">
+              <div class="battery-fill" data-lvd-fill></div>
+              <span data-lvd-percent>80%</span>
+            </div>
+            <div class="circuit-path">
+              <span></span>
+              <button class="relay-switch" type="button" aria-label="Relay switch state" data-lvd-switch></button>
+              <span></span>
+            </div>
+            <div class="bulb" aria-label="Load indicator" data-lvd-bulb>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="status-card" data-lvd-status-card>
+            <dl>
+              <div>
+                <dt>Voltage</dt>
+                <dd><span data-lvd-status-voltage>12.0</span> V</dd>
+              </div>
+              <div>
+                <dt>Cutoff Threshold</dt>
+                <dd>11.0 V</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd data-lvd-status>CONNECTED</dd>
+              </div>
+            </dl>
+            <p data-lvd-explanation>
+              The battery remains within its safe operating range. The load stays connected.
+            </p>
+          </div>
         </div>
       </section>
     </main>
-    <script src="../script.js?v=17"></script>
+    <script src="../script.js?v=19"></script>
   </body>
 </html>

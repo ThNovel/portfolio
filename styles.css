@@ -625,6 +625,14 @@ h3 {
   margin-bottom: 34px;
 }
 
+.section-intro {
+  max-width: 680px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.65;
+}
+
 .work-grid,
 .expertise-grid {
   display: grid;
@@ -1501,7 +1509,8 @@ h3 {
 }
 
 .demo-placeholder,
-.logic-demo {
+.logic-demo,
+.cutoff-demo {
   border: 1px solid var(--soft-line);
   border-radius: var(--radius);
   padding: 28px;
@@ -1521,6 +1530,232 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
   gap: 24px;
+}
+
+.cutoff-demo {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(280px, 1fr) minmax(240px, 0.8fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.voltage-panel,
+.status-card {
+  display: grid;
+  align-content: center;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 22px;
+  background: var(--panel-strong);
+}
+
+.demo-label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.voltage-panel strong {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--ink);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1;
+}
+
+.voltage-panel input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.auto-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.auto-controls button {
+  flex: 1 1 74px;
+  min-height: 38px;
+  border: 1px solid var(--soft-line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--panel);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 680;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.auto-controls button:hover,
+.auto-controls button:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(184, 135, 25, 0.36);
+}
+
+.circuit-visual {
+  display: grid;
+  grid-template-columns: 0.9fr 1fr 0.8fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 260px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(184, 135, 25, 0.09), transparent 12rem),
+    var(--panel-strong);
+}
+
+.battery-shell {
+  position: relative;
+  height: 132px;
+  overflow: hidden;
+  border: 2px solid var(--soft-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.battery-shell::after {
+  position: absolute;
+  top: 38px;
+  right: -9px;
+  width: 8px;
+  height: 52px;
+  border-radius: 0 6px 6px 0;
+  content: "";
+  background: var(--soft-line);
+}
+
+.battery-fill {
+  position: absolute;
+  inset: auto 0 0;
+  height: 80%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), transparent),
+    var(--accent);
+  transition: height 260ms ease, opacity 220ms ease;
+}
+
+.battery-shell span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-weight: 760;
+}
+
+.circuit-path {
+  display: grid;
+  grid-template-columns: 1fr 54px 1fr;
+  align-items: center;
+}
+
+.circuit-path span {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.42;
+  transition: opacity 220ms ease;
+}
+
+.relay-switch {
+  position: relative;
+  width: 54px;
+  height: 34px;
+  border: 1px solid var(--soft-line);
+  border-radius: 999px;
+  background: var(--panel);
+  cursor: default;
+}
+
+.relay-switch::before {
+  position: absolute;
+  top: 14px;
+  left: 9px;
+  width: 34px;
+  height: 4px;
+  border-radius: 999px;
+  content: "";
+  background: var(--accent);
+  transform: rotate(-30deg);
+  transform-origin: left center;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cutoff-demo.is-connected .relay-switch::before {
+  transform: rotate(0deg);
+}
+
+.cutoff-demo.is-connected .circuit-path span {
+  opacity: 1;
+}
+
+.bulb {
+  display: grid;
+  width: 96px;
+  height: 96px;
+  place-items: center;
+  justify-self: center;
+  border: 1px solid var(--soft-line);
+  border-radius: 50%;
+  background: var(--panel);
+  transition: box-shadow 260ms ease, border-color 260ms ease, background 260ms ease;
+}
+
+.bulb span {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(98, 98, 98, 0.24);
+  transition: background 260ms ease, box-shadow 260ms ease;
+}
+
+.cutoff-demo.is-connected .bulb {
+  border-color: rgba(184, 135, 25, 0.42);
+  box-shadow: 0 0 38px rgba(184, 135, 25, 0.18);
+}
+
+.cutoff-demo.is-connected .bulb span {
+  background: #f4c95d;
+  box-shadow: 0 0 34px rgba(244, 201, 93, 0.64);
+}
+
+.status-card dl {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 22px;
+}
+
+.status-card dt {
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status-card dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 760;
+}
+
+.status-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.cutoff-demo.is-disconnected .status-card {
+  border-color: rgba(184, 135, 25, 0.34);
 }
 
 .bit-controls {
@@ -1759,6 +1994,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .cutoff-demo {
+    grid-template-columns: 1fr;
+  }
+
   .logic-flow {
     grid-template-columns: 1fr;
   }
@@ -1914,6 +2153,7 @@ h3 {
   .project-deep-dive,
   .demo-placeholder,
   .logic-demo,
+  .cutoff-demo,
   .project-facts {
     padding: 22px;
   }
@@ -1926,6 +2166,21 @@ h3 {
   .project-copy p {
     font-size: 1rem;
     line-height: 1.65;
+  }
+
+  .circuit-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .circuit-path {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
+  }
+
+  .circuit-path span {
+    width: 3px;
+    height: 28px;
   }
 
   .project-nav .button {
