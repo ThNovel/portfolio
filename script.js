@@ -25,7 +25,7 @@ const removeHashFromUrl = () => {
 };
 
 if (waferGrid && waferGrid.children.length === 0) {
-  for (let i = 0; i < 154; i += 1) {
+  for (let i = 0; i < 130; i += 1) {
     waferGrid.appendChild(document.createElement("span"));
   }
 }
@@ -381,17 +381,6 @@ tactileSurfaces.forEach((surface) => {
     surface.style.setProperty("--pointer-y", `${y}%`);
   });
 });
-
-if (waferStage) {
-  waferStage.addEventListener("pointermove", (event) => {
-    const rect = waferStage.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-    waferStage.style.setProperty("--pointer-x", `${x}%`);
-    waferStage.style.setProperty("--pointer-y", `${y}%`);
-  });
-}
 
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {
