@@ -298,6 +298,144 @@ const setupLvdDemo = (demo) => {
 
 document.querySelectorAll('[data-demo="lvd"]').forEach(setupLvdDemo);
 
+const setupCansatDemo = (demo) => {
+  const startButton = demo.querySelector("[data-cansat-start]");
+  const resetButton = demo.querySelector("[data-cansat-reset]");
+  const marker = demo.querySelector("[data-cansat-marker]");
+  const phase = demo.querySelector("[data-cansat-phase]");
+  const altitude = demo.querySelector("[data-cansat-altitude]");
+  const velocity = demo.querySelector("[data-cansat-velocity]");
+  const temperature = demo.querySelector("[data-cansat-temperature]");
+  const pressure = demo.querySelector("[data-cansat-pressure]");
+  const link = demo.querySelector("[data-cansat-link]");
+  const packet = demo.querySelector("[data-cansat-packet]");
+  let missionTimer;
+  let missionTime = 0;
+
+  if (!startButton || !resetButton || !marker || !phase || !altitude || !velocity || !temperature || !pressure || !link || !packet) {
+    return;
+  }
+
+  const setMissionState = (state) => {
+    const pressureValue = 1013.25 * Math.pow(1 - state.altitude / 44330, 5.255);
+    const temperatureValue = 24 - state.altitude * 0.0065 + Math.sin(state.time * 0.8) * 0.3;
+    const markerPosition = 88 - Math.min(state.altitude, 120) / 120 * 72;
+
+    phase.textContent = state.phase;
+    altitude.textContent = Math.round(state.altitude).toString();
+    velocity.textContent = state.velocity.toFixed(1);
+    temperature.textContent = temperatureValue.toFixed(1);
+    pressure.textContent = pressureValue.toFixed(1);
+    link.textContent = state.link;
+    packet.textContent = state.packet;
+
+    marker.style.setProperty("--cansat-y", `${markerPosition}%`);
+    demo.classList.toggle("is-running", state.running);
+    demo.classList.toggle("is-descent", state.phase === "Descent");
+    demo.classList.toggle("is-complete", state.phase === "Landing / Mission Complete");
+  };
+
+  const getMissionState = () => {
+    if (missionTime < 0.4) {
+      return {
+        altitude: 0,
+        link: "Standby",
+        packet: "--",
+        phase: "Idle",
+        running: false,
+        time: missionTime,
+        velocity: 0
+      };
+    }
+
+    if (missionTime < 7) {
+      return {
+        altitude: (missionTime / 7) * 120,
+        link: "Transmitting",
+        packet: `T+${missionTime.toFixed(1)}s`,
+        phase: "Drone Ascent",
+        running: true,
+        time: missionTime,
+        velocity: 0
+      };
+    }
+
+    if (missionTime < 8.5) {
+      return {
+        altitude: 120,
+        link: "Packet lock",
+        packet: `T+${missionTime.toFixed(1)}s`,
+        phase: "Release",
+        running: true,
+        time: missionTime,
+        velocity: 0
+      };
+    }
+
+    if (missionTime < 20) {
+      const descentProgress = (missionTime - 8.5) / 11.5;
+      return {
+        altitude: Math.max(0, 120 * (1 - descentProgress)),
+        link: "Receiving",
+        packet: `T+${missionTime.toFixed(1)}s`,
+        phase: "Descent",
+        running: true,
+        time: missionTime,
+        velocity: -(8.5 + Math.sin(missionTime * 1.4) * 1.4)
+      };
+    }
+
+    return {
+      altitude: 0,
+      link: "Complete",
+      packet: `T+${missionTime.toFixed(1)}s`,
+      phase: "Landing / Mission Complete",
+      running: false,
+      time: missionTime,
+      velocity: 0
+    };
+  };
+
+  const stopMission = () => {
+    window.clearInterval(missionTimer);
+    missionTimer = undefined;
+  };
+
+  const resetMission = () => {
+    stopMission();
+    missionTime = 0;
+    startButton.textContent = "Start Mission Simulation";
+    setMissionState(getMissionState());
+  };
+
+  startButton.addEventListener("click", () => {
+    if (missionTimer) {
+      return;
+    }
+
+    if (missionTime >= 20) {
+      missionTime = 0;
+    }
+
+    startButton.textContent = "Simulation Running";
+    missionTimer = window.setInterval(() => {
+      missionTime += 0.22;
+      const state = getMissionState();
+      setMissionState(state);
+
+      if (missionTime >= 20) {
+        stopMission();
+        startButton.textContent = "Run Again";
+      }
+    }, 180);
+  });
+
+  resetButton.addEventListener("click", resetMission);
+  resetMission();
+};
+
+document.querySelectorAll('[data-demo="cansat"]').forEach(setupCansatDemo);
+
 const updateHeaderDepth = () => {
   const scrolled = window.scrollY > 16;
   header.style.filter = scrolled ? "drop-shadow(0 12px 28px rgba(9, 9, 9, 0.08))" : "none";
@@ -381,17 +519,6 @@ tactileSurfaces.forEach((surface) => {
     surface.style.setProperty("--pointer-y", `${y}%`);
   });
 });
-
-if (waferStage) {
-  waferStage.addEventListener("pointermove", (event) => {
-    const rect = waferStage.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-    waferStage.style.setProperty("--pointer-x", `${x}%`);
-    waferStage.style.setProperty("--pointer-y", `${y}%`);
-  });
-}
 
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {

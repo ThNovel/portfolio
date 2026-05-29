@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=24" />
+    <link rel="stylesheet" href="../styles.css?v=25" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -63,6 +63,14 @@
           <img src="../assets/2-Photoroom.png" alt="3D render of the Cansat Flight Computer PCB." />
           <figcaption>3D board render</figcaption>
         </figure>
+        <figure>
+          <img src="../assets/back_pcb_cansat.png" alt="Back side routing view of the Cansat Flight Computer PCB." />
+          <figcaption>Back-side routing view</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/ground_station.png" alt="Ground station telemetry dashboard for the Cansat mission." />
+          <figcaption>Ground station dashboard</figcaption>
+        </figure>
       </section>
 
       <section class="project-body section-shell">
@@ -95,7 +103,19 @@
               </button>
               <div class="accordion-content" id="cansat-problem">
                 <div class="accordion-inner">
-                  <p>Placeholder: describe the mission constraints, subsystem wiring issues, and why a dedicated flight computer PCB was needed.</p>
+                  <p>
+                    The CanSat needed several electronics subsystems to fit and work together
+                    inside a very small physical volume. Sensors, telemetry hardware, power
+                    connections, and debugging access all had to be organized without turning
+                    the payload into a fragile bundle of loose wiring.
+                  </p>
+                  <p>
+                    Early subsystem work relied on separated modules and jumper-heavy
+                    connections, which made assembly, debugging, and validation slower than
+                    they needed to be. A dedicated flight computer PCB gave the system a
+                    cleaner integration platform with predictable interfaces and fewer
+                    wiring-related failure points.
+                  </p>
                 </div>
               </div>
             </div>
@@ -105,8 +125,40 @@
               </button>
               <div class="accordion-content" id="cansat-architecture">
                 <div class="accordion-inner">
-                  <p>Placeholder: explain the board-level architecture, connector groups, sensor interfaces, communication headers, and power routing.</p>
-                  <img src="../assets/1.png" alt="Routing view placeholder for the Cansat board architecture." />
+                  <p>
+                    The ESP32 acted as the central controller for the flight computer. The
+                    TMP117 provided temperature measurements, the DPS310 provided pressure
+                    data for altitude-related telemetry, the LSM9DS1 supplied inertial data,
+                    and the RFM69HCW handled radio telemetry to the ground station.
+                  </p>
+                  <p>
+                    The PCB was organized around readable connector groups, power
+                    distribution, sensor interfaces, and debugging accessibility. The goal was
+                    not only to make the system compact, but to make it serviceable during
+                    subsystem bring-up and full mission integration.
+                  </p>
+                  <div class="system-architecture cansat-architecture-diagram" aria-label="Cansat flight computer system architecture">
+                    <div class="system-cluster">
+                      <span>TMP117</span>
+                      <span>DPS310</span>
+                      <span>LSM9DS1</span>
+                    </div>
+                    <span class="system-arrow">→</span>
+                    <div class="system-block primary-block">
+                      <strong>ESP32</strong>
+                      <small>Flight Computer</small>
+                    </div>
+                    <span class="system-arrow">→</span>
+                    <div class="system-block">
+                      <strong>RFM69HCW</strong>
+                      <small>Radio Telemetry</small>
+                    </div>
+                    <span class="system-arrow">→</span>
+                    <div class="system-block">
+                      <strong>Ground Station</strong>
+                      <small>Dashboard</small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,7 +168,23 @@
               </button>
               <div class="accordion-content" id="cansat-process">
                 <div class="accordion-inner">
-                  <p>Placeholder: document schematic capture, connector selection, routing decisions, and design-for-debug choices.</p>
+                  <p>
+                    The design started from system requirements and interface planning:
+                    which signals needed to leave the board, which modules needed dedicated
+                    connectors, and which points had to remain accessible during testing.
+                  </p>
+                  <p>
+                    From there, the work moved through schematic capture, connector
+                    selection, board placement, routing, and design-for-debug decisions. The
+                    layout prioritized signal organization and serviceability so the board
+                    could be read, probed, and modified during development instead of only
+                    being packed as tightly as possible.
+                  </p>
+                  <ul>
+                    <li>Grouped sensor, communication, and power interfaces by function.</li>
+                    <li>Reduced loose wiring by consolidating subsystem connections onto one board.</li>
+                    <li>Kept debugging and subsystem access in mind during connector placement.</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -126,7 +194,19 @@
               </button>
               <div class="accordion-content" id="cansat-verification">
                 <div class="accordion-inner">
-                  <p>Placeholder: describe continuity checks, subsystem bring-up, and how each connector/interface was validated.</p>
+                  <p>
+                    Verification followed a staged bring-up process. The board was first
+                    checked for continuity and power integrity, then individual interfaces
+                    were validated before moving into integrated subsystem testing.
+                  </p>
+                  <p>
+                    During system-level testing, the ground station dashboard was used to
+                    observe telemetry receive status, temperature, pressure, altitude,
+                    descent velocity, mission phase, and mission state. This made it easier
+                    to confirm that the flight computer was not only powering up, but also
+                    producing useful mission data.
+                  </p>
+                  <img src="../assets/ground_station.png" alt="Ground station dashboard used during Cansat telemetry testing." />
                 </div>
               </div>
             </div>
@@ -136,7 +216,17 @@
               </button>
               <div class="accordion-content" id="cansat-results">
                 <div class="accordion-inner">
-                  <p>Placeholder: summarize what worked, what changed during testing, and what you would improve in a next revision.</p>
+                  <p>
+                    The prototype served as a functional central flight computer for
+                    subsystem testing and system integration. It reduced wiring complexity,
+                    made debugging more direct, and provided a cleaner platform for testing
+                    sensing, telemetry, and mission-state behavior.
+                  </p>
+                  <p>
+                    Future revisions would improve silkscreen labeling, add more dedicated
+                    test points, refine layout details, and include clearer revision-specific
+                    documentation so bring-up and handoff are even easier.
+                  </p>
                 </div>
               </div>
             </div>
@@ -161,16 +251,79 @@
         </aside>
       </section>
 
-      <section class="interactive-demo section-shell" data-demo="placeholder">
+      <section class="interactive-demo section-shell" data-demo="cansat">
         <div class="section-heading">
           <p class="section-kicker">Interactive Demo</p>
-          <h2>Flight computer explorer.</h2>
+          <h2>Mission simulator.</h2>
+          <p class="section-intro">
+            A lightweight simulation of the flight computer telemetry path during a
+            CanSat mission profile.
+          </p>
         </div>
-        <div class="demo-placeholder">
-          <p>Placeholder for a future board walkthrough showing connector groups, power paths, and subsystem interfaces.</p>
+        <div class="mission-demo">
+          <div class="mission-panel">
+            <div>
+              <p class="demo-label">Mission Control</p>
+              <h3>CanSat telemetry loop</h3>
+              <p>
+                Start the sequence to see the ESP32 collect sensor data and push
+                live telemetry to the ground station through the radio link.
+              </p>
+            </div>
+            <div class="mission-actions">
+              <button class="button primary" type="button" data-cansat-start>Start Mission Simulation</button>
+              <button class="button secondary" type="button" data-cansat-reset>Reset</button>
+            </div>
+          </div>
+
+          <div class="mission-visual" aria-label="Animated Cansat mission profile">
+            <div class="drone-line">
+              <span>Drone ascent / release point</span>
+            </div>
+            <div class="altitude-track">
+              <span>120 m</span>
+              <span>60 m</span>
+              <span>0 m</span>
+            </div>
+            <div class="cansat-marker" data-cansat-marker>
+              <span class="parachute" aria-hidden="true"></span>
+              <span class="cansat-body" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="telemetry-grid" aria-label="Live Cansat telemetry">
+            <div class="telemetry-card">
+              <span>Mission Phase</span>
+              <strong data-cansat-phase>Idle</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Altitude</span>
+              <strong><span data-cansat-altitude>0</span> m</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Descent Velocity</span>
+              <strong><span data-cansat-velocity>0.0</span> m/s</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Temperature</span>
+              <strong><span data-cansat-temperature>24.0</span> °C</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Pressure</span>
+              <strong><span data-cansat-pressure>1013.3</span> hPa</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Telemetry Link</span>
+              <strong data-cansat-link>Standby</strong>
+            </div>
+            <div class="telemetry-card">
+              <span>Last Packet</span>
+              <strong data-cansat-packet>--</strong>
+            </div>
+          </div>
         </div>
       </section>
     </main>
-    <script src="../script.js?v=22"></script>
+    <script src="../script.js?v=23"></script>
   </body>
 </html>

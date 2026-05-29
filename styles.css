@@ -1877,6 +1877,265 @@ h3 {
   border-color: rgba(184, 135, 25, 0.34);
 }
 
+.system-architecture {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) auto minmax(140px, 0.9fr) auto minmax(140px, 0.9fr) auto minmax(150px, 0.95fr);
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(184, 135, 25, 0.1), transparent 14rem),
+    var(--panel-strong);
+}
+
+.system-cluster,
+.system-block {
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.system-cluster {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+}
+
+.system-cluster span {
+  border: 1px solid rgba(184, 135, 25, 0.18);
+  border-radius: 999px;
+  padding: 8px 10px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 720;
+  text-align: center;
+}
+
+.system-block {
+  display: grid;
+  min-height: 96px;
+  place-items: center;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.system-block strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.system-block small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.system-block.primary-block {
+  border-color: rgba(184, 135, 25, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 14px 34px rgba(184, 135, 25, 0.1);
+}
+
+.system-arrow {
+  color: var(--accent);
+  font-size: 1.4rem;
+  font-weight: 760;
+  text-align: center;
+}
+
+.mission-demo {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.82fr) minmax(320px, 1.18fr);
+  gap: 18px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 28px;
+  background: var(--panel);
+  box-shadow: 0 18px 45px rgba(9, 9, 9, 0.08);
+  backdrop-filter: blur(22px) saturate(1.45);
+}
+
+.mission-panel {
+  display: grid;
+  align-content: space-between;
+  gap: 24px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 22px;
+  background: var(--panel-strong);
+}
+
+.mission-panel h3 {
+  margin-bottom: 12px;
+}
+
+.mission-panel p:not(.demo-label) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.mission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mission-visual {
+  --cansat-y: 88%;
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(184, 135, 25, 0.12), transparent 12rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.16)),
+    var(--panel-strong);
+}
+
+:root[data-theme="dark"] .mission-visual {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(213, 166, 51, 0.12), transparent 12rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    var(--panel-strong);
+}
+
+.mission-visual::before {
+  position: absolute;
+  inset: 26px 50% 26px auto;
+  width: 1px;
+  content: "";
+  background: linear-gradient(180deg, transparent, var(--soft-line), transparent);
+}
+
+.drone-line {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drone-line::before,
+.drone-line::after {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  content: "";
+  background: var(--accent);
+  opacity: 0.34;
+}
+
+.drone-line::before {
+  width: 56px;
+}
+
+.drone-line::after {
+  flex: 1;
+}
+
+.altitude-track {
+  position: absolute;
+  top: 72px;
+  bottom: 28px;
+  left: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.cansat-marker {
+  position: absolute;
+  top: var(--cansat-y);
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  transform: translate(-50%, -50%);
+  transition: top 420ms var(--ease-apple);
+}
+
+.parachute {
+  width: 54px;
+  height: 26px;
+  border: 1px solid rgba(184, 135, 25, 0.36);
+  border-bottom: 0;
+  border-radius: 54px 54px 0 0;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.55), transparent 70%),
+    rgba(184, 135, 25, 0.12);
+  opacity: 0;
+  transform: translateY(7px) scale(0.92);
+  transition: opacity 320ms var(--ease-apple), transform 320ms var(--ease-apple);
+}
+
+.cansat-body {
+  width: 26px;
+  height: 42px;
+  border: 1px solid var(--soft-line);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.18)),
+    var(--panel);
+  box-shadow: 0 16px 36px rgba(9, 9, 9, 0.14);
+}
+
+.mission-demo.is-descent .parachute,
+.mission-demo.is-complete .parachute {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.telemetry-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.telemetry-card {
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--panel-strong);
+}
+
+.telemetry-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.telemetry-card strong {
+  color: var(--ink);
+  font-size: clamp(1.02rem, 1.7vw, 1.45rem);
+  line-height: 1.1;
+}
+
+.mission-demo.is-running .telemetry-card,
+.mission-demo.is-complete .telemetry-card {
+  border-color: rgba(184, 135, 25, 0.2);
+}
+
 .bit-controls {
   display: grid;
   gap: 22px;
@@ -2129,8 +2388,21 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .mission-demo,
   .cutoff-demo {
     grid-template-columns: 1fr;
+  }
+
+  .system-architecture {
+    grid-template-columns: 1fr;
+  }
+
+  .system-arrow {
+    transform: rotate(90deg);
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .logic-flow {
@@ -2288,6 +2560,7 @@ h3 {
   .project-deep-dive,
   .demo-placeholder,
   .logic-demo,
+  .mission-demo,
   .cutoff-demo,
   .project-facts {
     padding: 22px;
@@ -2304,6 +2577,22 @@ h3 {
   }
 
   .circuit-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-panel {
+    padding: 18px;
+  }
+
+  .mission-visual {
+    min-height: 310px;
+  }
+
+  .mission-actions .button {
+    width: 100%;
+  }
+
+  .telemetry-grid {
     grid-template-columns: 1fr;
   }
 
