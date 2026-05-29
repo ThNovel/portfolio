@@ -1,12 +1,17 @@
+document.documentElement.classList.add("js");
+
 const header = document.querySelector(".site-header");
 const themeToggle = document.querySelector(".theme-toggle");
 const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
 const accordions = document.querySelectorAll("[data-accordion]");
-const tactileSurfaces = document.querySelectorAll(".tactile-surface, .work-card");
+const tactileSurfaces = document.querySelectorAll(
+  ".tactile-surface, .work-card, .button, .contact-links a, .contact-links button, .tool-grid span"
+);
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
 const waferGrid = document.querySelector(".wafer-die-grid");
 const waferStage = document.querySelector(".wafer-stage");
+const hero = document.querySelector(".hero");
 
 const getCleanUrl = () => {
   const cleanPath = window.location.pathname.replace(/index\.html$/, "");
@@ -23,6 +28,42 @@ if (waferGrid && waferGrid.children.length === 0) {
   for (let i = 0; i < 130; i += 1) {
     waferGrid.appendChild(document.createElement("span"));
   }
+}
+
+document
+  .querySelectorAll(
+    ".section-heading, .intro-grid, .skills-section, .current-section, .contact-section, .work-card, .expertise-item, .tool-grid span, .current-card, .project-copy, .project-deep-dive, .project-facts, .project-gallery figure"
+  )
+  .forEach((element) => {
+    element.classList.add("scroll-reveal");
+  });
+
+document
+  .querySelectorAll(".section-heading h2, .intro-grid h2, .contact-section h2")
+  .forEach((element) => {
+    element.classList.add("scroll-text");
+  });
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  document.querySelectorAll(".scroll-reveal, .scroll-text").forEach((element) => {
+    revealObserver.observe(element);
+  });
+} else {
+  document.querySelectorAll(".scroll-reveal, .scroll-text").forEach((element) => {
+    element.classList.add("is-visible");
+  });
 }
 
 const setTheme = (theme) => {
@@ -264,6 +305,23 @@ const updateHeaderDepth = () => {
 
 updateHeaderDepth();
 
+const updateHeroMotion = () => {
+  if (!hero || !waferStage) {
+    return;
+  }
+
+  const progress = Math.min(Math.max(window.scrollY / Math.max(hero.offsetHeight * 0.72, 1), 0), 1);
+  const scale = 1 - progress * 0.1;
+  const opacity = 1 - progress * 0.38;
+  const shift = progress * 34;
+
+  document.documentElement.style.setProperty("--wafer-scale", scale.toFixed(3));
+  document.documentElement.style.setProperty("--wafer-opacity", opacity.toFixed(3));
+  document.documentElement.style.setProperty("--wafer-shift", `${shift.toFixed(1)}px`);
+};
+
+updateHeroMotion();
+
 let lastScrollY = window.scrollY;
 
 const updateHeaderVisibility = () => {
@@ -272,6 +330,7 @@ const updateHeaderVisibility = () => {
   const movedEnough = Math.abs(currentScrollY - lastScrollY) > 6;
 
   updateHeaderDepth();
+  updateHeroMotion();
 
   if (currentScrollY < 40) {
     header.classList.remove("header-hidden");
