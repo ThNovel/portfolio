@@ -1314,7 +1314,12 @@ h3 {
 
 .contact-links a::after,
 .contact-links button::after {
-  content: "->";
+  position: static;
+  inset: auto;
+  flex: 0 0 auto;
+  margin-left: 18px;
+  border: 0;
+  content: "→";
   color: var(--accent);
 }
 
