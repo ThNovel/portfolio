@@ -382,6 +382,17 @@ tactileSurfaces.forEach((surface) => {
   });
 });
 
+if (waferStage) {
+  waferStage.addEventListener("pointermove", (event) => {
+    const rect = waferStage.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    waferStage.style.setProperty("--pointer-x", `${x}%`);
+    waferStage.style.setProperty("--pointer-y", `${y}%`);
+  });
+}
+
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {
     const target = document.querySelector(heroGlassButton.dataset.scrollTarget);
