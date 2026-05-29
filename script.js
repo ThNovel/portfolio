@@ -25,7 +25,7 @@ const removeHashFromUrl = () => {
 };
 
 if (waferGrid && waferGrid.children.length === 0) {
-  for (let i = 0; i < 130; i += 1) {
+  for (let i = 0; i < 154; i += 1) {
     waferGrid.appendChild(document.createElement("span"));
   }
 }
