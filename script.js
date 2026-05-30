@@ -520,6 +520,36 @@ tactileSurfaces.forEach((surface) => {
   });
 });
 
+if (waferStage) {
+  let waferFrame;
+
+  waferStage.addEventListener("pointermove", (event) => {
+    if (waferFrame) {
+      return;
+    }
+
+    waferFrame = window.requestAnimationFrame(() => {
+      const rect = waferStage.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 22;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 22;
+
+      waferStage.style.setProperty("--wafer-hover-x", `${x.toFixed(1)}px`);
+      waferStage.style.setProperty("--wafer-hover-y", `${y.toFixed(1)}px`);
+      waferFrame = undefined;
+    });
+  });
+
+  waferStage.addEventListener("pointerleave", () => {
+    if (waferFrame) {
+      window.cancelAnimationFrame(waferFrame);
+      waferFrame = undefined;
+    }
+
+    waferStage.style.setProperty("--wafer-hover-x", "0px");
+    waferStage.style.setProperty("--wafer-hover-y", "0px");
+  });
+}
+
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {
     const target = document.querySelector(heroGlassButton.dataset.scrollTarget);

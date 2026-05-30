@@ -372,8 +372,8 @@ h3 {
 }
 
 .wafer-stage {
-  --pointer-x: 50%;
-  --pointer-y: 50%;
+  --wafer-hover-x: 0px;
+  --wafer-hover-y: 0px;
   position: absolute;
   inset: 8px 0 auto auto;
   display: grid;
@@ -409,7 +409,7 @@ h3 {
   border-radius: 50%;
   background:
     radial-gradient(circle at 33% 26%, rgba(255, 255, 255, 0.9), transparent 22%),
-    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.76), transparent 22%),
+    radial-gradient(circle at 56% 48%, rgba(255, 255, 255, 0.62), transparent 22%),
     conic-gradient(from 120deg, #f5f8ff, #dce8ff, #fae5ff, #fff3bf, #d9fff4, #e9edff, #f5f8ff);
   box-shadow:
     inset 0 2px 12px rgba(255, 255, 255, 0.92),
@@ -420,15 +420,17 @@ h3 {
 
 .wafer-disc::before {
   position: absolute;
-  inset: 0;
+  inset: -14%;
   content: "";
   background:
-    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.92), transparent 18%),
-    conic-gradient(from 90deg, rgba(255, 0, 120, 0.34), rgba(255, 230, 0, 0.28), rgba(0, 220, 255, 0.3), rgba(150, 80, 255, 0.28), rgba(255, 0, 120, 0.34));
+    radial-gradient(circle at 58% 48%, rgba(255, 255, 255, 0.9), transparent 17%),
+    conic-gradient(from 90deg, rgba(255, 0, 120, 0.36), rgba(255, 230, 0, 0.3), rgba(0, 220, 255, 0.34), rgba(150, 80, 255, 0.32), rgba(255, 0, 120, 0.36));
   opacity: 0;
   mix-blend-mode: screen;
   pointer-events: none;
-  transition: opacity 420ms var(--ease-apple);
+  transform: translate3d(var(--wafer-hover-x), var(--wafer-hover-y), 0);
+  transition: opacity 420ms var(--ease-apple), transform 180ms var(--ease-apple);
+  will-change: opacity, transform;
 }
 
 .wafer-stage:hover .wafer-disc::before,
@@ -1367,6 +1369,10 @@ h3 {
 
 .project-gallery.single-gallery {
   grid-template-columns: minmax(0, 1fr);
+}
+
+.project-gallery .gallery-wide {
+  grid-column: 1 / -1;
 }
 
 .project-gallery figure {
