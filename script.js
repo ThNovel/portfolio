@@ -319,7 +319,7 @@ const setupCansatDemo = (demo) => {
   const setMissionState = (state) => {
     const pressureValue = 1013.25 * Math.pow(1 - state.altitude / 44330, 5.255);
     const temperatureValue = 24 - state.altitude * 0.0065 + Math.sin(state.time * 0.8) * 0.3;
-    const markerPosition = 88 - Math.min(state.altitude, 120) / 120 * 72;
+    const markerPosition = 88 - Math.min(state.altitude, 400) / 400 * 72;
 
     phase.textContent = state.phase;
     altitude.textContent = Math.round(state.altitude).toString();
@@ -350,7 +350,7 @@ const setupCansatDemo = (demo) => {
 
     if (missionTime < 7) {
       return {
-        altitude: (missionTime / 7) * 120,
+        altitude: (missionTime / 7) * 315,
         link: "Transmitting",
         packet: `T+${missionTime.toFixed(1)}s`,
         phase: "Drone Ascent",
@@ -362,7 +362,7 @@ const setupCansatDemo = (demo) => {
 
     if (missionTime < 8.5) {
       return {
-        altitude: 120,
+        altitude: 315,
         link: "Packet lock",
         packet: `T+${missionTime.toFixed(1)}s`,
         phase: "Release",
@@ -375,13 +375,13 @@ const setupCansatDemo = (demo) => {
     if (missionTime < 20) {
       const descentProgress = (missionTime - 8.5) / 11.5;
       return {
-        altitude: Math.max(0, 120 * (1 - descentProgress)),
+        altitude: Math.max(0, 315 * (1 - descentProgress)),
         link: "Receiving",
         packet: `T+${missionTime.toFixed(1)}s`,
         phase: "Descent",
         running: true,
         time: missionTime,
-        velocity: -(8.5 + Math.sin(missionTime * 1.4) * 1.4)
+        velocity: -(10.8 + Math.sin(missionTime * 1.4) * 0.35)
       };
     }
 

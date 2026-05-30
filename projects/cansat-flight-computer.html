@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=25" />
+    <link rel="stylesheet" href="../styles.css?v=26" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -78,6 +78,8 @@
           <p>
             This PCB was developed as the main flight computer for our Cansat project,
             a soda-can-sized satellite designed for environmental sensing and telemetry.
+            The project was built for the CanSat International Competition organized
+            by UNAM in Mexico.
           </p>
           <p>
             The board was built around a practical engineering philosophy: simplify
@@ -206,6 +208,11 @@
                     to confirm that the flight computer was not only powering up, but also
                     producing useful mission data.
                   </p>
+                  <p>
+                    The simulator below reflects the competition profile: the original target
+                    altitude was 400 m, but the flight ceiling was changed to 315 m shortly
+                    before the mission.
+                  </p>
                   <img src="../assets/ground_station.png" alt="Ground station dashboard used during Cansat telemetry testing." />
                 </div>
               </div>
@@ -223,9 +230,18 @@
                     sensing, telemetry, and mission-state behavior.
                   </p>
                   <p>
-                    Future revisions would improve silkscreen labeling, add more dedicated
-                    test points, refine layout details, and include clearer revision-specific
-                    documentation so bring-up and handoff are even easier.
+                    During the competition mission, the PCB worked as expected and was able
+                    to transmit data throughout the full flight with minimal packet loss. The
+                    board also survived landing with no electrical damage. Our team placed
+                    14th out of 35 teams in the CanSat International Competition organized
+                    by UNAM in Mexico.
+                  </p>
+                  <p>
+                    One improvement area was the image telemetry path: seven packets were
+                    lost while sending the required anaglyph picture. Future revisions would
+                    improve silkscreen labeling, add more dedicated test points, refine
+                    layout details, and include clearer revision-specific documentation so
+                    bring-up and handoff are even easier.
                   </p>
                 </div>
               </div>
@@ -281,8 +297,8 @@
               <span>Drone ascent / release point</span>
             </div>
             <div class="altitude-track">
-              <span>120 m</span>
-              <span>60 m</span>
+              <span>400 m</span>
+              <span>200 m</span>
               <span>0 m</span>
             </div>
             <div class="cansat-marker" data-cansat-marker>
@@ -324,6 +340,6 @@
         </div>
       </section>
     </main>
-    <script src="../script.js?v=23"></script>
+    <script src="../script.js?v=24"></script>
   </body>
 </html>
