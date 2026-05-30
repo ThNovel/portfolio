@@ -372,8 +372,8 @@ h3 {
 }
 
 .wafer-stage {
-  --wafer-hover-x: 0px;
-  --wafer-hover-y: 0px;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
   position: absolute;
   inset: 8px 0 auto auto;
   display: grid;
@@ -405,11 +405,13 @@ h3 {
   width: min(92%, 500px);
   aspect-ratio: 1;
   overflow: hidden;
+  isolation: isolate;
   border: 1px solid rgba(9, 9, 9, 0.08);
   border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
   background:
     radial-gradient(circle at 33% 26%, rgba(255, 255, 255, 0.9), transparent 22%),
-    radial-gradient(circle at 56% 48%, rgba(255, 255, 255, 0.62), transparent 22%),
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.62), transparent 22%),
     conic-gradient(from 120deg, #f5f8ff, #dce8ff, #fae5ff, #fff3bf, #d9fff4, #e9edff, #f5f8ff);
   box-shadow:
     inset 0 2px 12px rgba(255, 255, 255, 0.92),
@@ -422,15 +424,16 @@ h3 {
   position: absolute;
   inset: 0;
   content: "";
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
   background:
-    radial-gradient(circle at 58% 48%, rgba(255, 255, 255, 0.9), transparent 17%),
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.9), transparent 17%),
     conic-gradient(from 90deg, rgba(255, 0, 120, 0.36), rgba(255, 230, 0, 0.3), rgba(0, 220, 255, 0.34), rgba(150, 80, 255, 0.32), rgba(255, 0, 120, 0.36));
   opacity: 0;
   mix-blend-mode: screen;
   pointer-events: none;
-  transform: translate3d(var(--wafer-hover-x), var(--wafer-hover-y), 0);
-  transition: opacity 420ms var(--ease-apple), transform 180ms var(--ease-apple);
-  will-change: opacity, transform;
+  transition: opacity 180ms var(--ease-apple);
+  will-change: opacity;
 }
 
 .wafer-stage:hover .wafer-disc::before,
@@ -441,6 +444,12 @@ h3 {
 
 .wafer-disc::after {
   display: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .wafer-disc::before {
+    display: none;
+  }
 }
 
 .wafer-die-grid {

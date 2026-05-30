@@ -522,32 +522,42 @@ tactileSurfaces.forEach((surface) => {
 
 if (waferStage) {
   let waferFrame;
+  const canHoverWafer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  waferStage.addEventListener("pointermove", (event) => {
-    if (waferFrame) {
-      return;
-    }
-
-    waferFrame = window.requestAnimationFrame(() => {
-      const rect = waferStage.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 22;
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 22;
-
-      waferStage.style.setProperty("--wafer-hover-x", `${x.toFixed(1)}px`);
-      waferStage.style.setProperty("--wafer-hover-y", `${y.toFixed(1)}px`);
-      waferFrame = undefined;
+  if (canHoverWafer) {
+    waferStage.addEventListener("pointerenter", () => {
+      waferStage.classList.add("is-revealed");
     });
-  });
 
-  waferStage.addEventListener("pointerleave", () => {
-    if (waferFrame) {
-      window.cancelAnimationFrame(waferFrame);
-      waferFrame = undefined;
-    }
+    waferStage.addEventListener("pointermove", (event) => {
+      waferStage.classList.add("is-revealed");
 
-    waferStage.style.setProperty("--wafer-hover-x", "0px");
-    waferStage.style.setProperty("--wafer-hover-y", "0px");
-  });
+      if (waferFrame) {
+        return;
+      }
+
+      waferFrame = window.requestAnimationFrame(() => {
+        const rect = waferStage.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+        waferStage.style.setProperty("--pointer-x", `${x.toFixed(1)}%`);
+        waferStage.style.setProperty("--pointer-y", `${y.toFixed(1)}%`);
+        waferFrame = undefined;
+      });
+    });
+
+    waferStage.addEventListener("pointerleave", () => {
+      if (waferFrame) {
+        window.cancelAnimationFrame(waferFrame);
+        waferFrame = undefined;
+      }
+
+      waferStage.classList.remove("is-revealed");
+      waferStage.style.setProperty("--pointer-x", "50%");
+      waferStage.style.setProperty("--pointer-y", "50%");
+    });
+  }
 }
 
 if (heroGlassButton) {
