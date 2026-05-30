@@ -1398,12 +1398,12 @@ h3 {
 }
 
 .cansat-gallery-stack figure {
-  display: grid;
-  grid-template-rows: 220px auto;
+  display: block;
 }
 
 .cansat-gallery-stack img {
-  height: 220px;
+  height: auto;
+  max-height: none;
   object-fit: contain;
 }
 
