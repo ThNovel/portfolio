@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=27" />
+    <link rel="stylesheet" href="../styles.css?v=28" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -54,27 +54,29 @@
         </div>
       </section>
 
-      <section class="project-gallery section-shell" aria-label="Cansat Flight Computer PCB images">
-        <figure>
+      <section class="project-gallery cansat-gallery section-shell" aria-label="Cansat Flight Computer PCB images">
+        <figure class="cansat-routing">
           <img src="../assets/1.png" alt="Routing view of the Cansat Flight Computer PCB." />
           <figcaption>Routing view</figcaption>
         </figure>
-        <figure>
-          <img src="../assets/2-Photoroom.png" alt="3D render of the Cansat Flight Computer PCB." />
-          <figcaption>3D board render</figcaption>
-        </figure>
-        <figure>
+        <figure class="cansat-back">
           <img src="../assets/back_pcb_cansat.png" alt="Back side routing view of the Cansat Flight Computer PCB." />
           <figcaption>Back-side routing view</figcaption>
         </figure>
-        <figure>
-          <img src="../assets/Schematic_Cansat_PCB_Flight_Computer_Only_2026-05-29.png" alt="Schematic view of the Cansat Flight Computer PCB." />
-          <figcaption>Flight computer schematic</figcaption>
-        </figure>
-        <figure class="gallery-wide">
-          <img src="../assets/ground_station.png" alt="Ground station telemetry dashboard for the Cansat mission." />
-          <figcaption>Ground station dashboard</figcaption>
-        </figure>
+        <div class="cansat-gallery-stack">
+          <figure>
+            <img src="../assets/2-Photoroom.png" alt="3D render of the Cansat Flight Computer PCB." />
+            <figcaption>3D board render</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/Schematic_Cansat_PCB_Flight_Computer_Only_2026-05-29.png" alt="Schematic view of the Cansat Flight Computer PCB." />
+            <figcaption>Flight computer schematic</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/ground_station.png" alt="Ground station telemetry dashboard for the Cansat mission." />
+            <figcaption>Ground station dashboard</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="project-body section-shell">

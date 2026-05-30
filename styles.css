@@ -420,7 +420,7 @@ h3 {
 
 .wafer-disc::before {
   position: absolute;
-  inset: -14%;
+  inset: 0;
   content: "";
   background:
     radial-gradient(circle at 58% 48%, rgba(255, 255, 255, 0.9), transparent 17%),
@@ -1373,6 +1373,29 @@ h3 {
 
 .project-gallery .gallery-wide {
   grid-column: 1 / -1;
+}
+
+.cansat-gallery {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.cansat-gallery-stack {
+  display: grid;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  gap: 16px;
+  align-self: start;
+}
+
+.cansat-gallery-stack figure {
+  display: grid;
+  grid-template-rows: 220px auto;
+}
+
+.cansat-gallery-stack img {
+  height: 220px;
+  object-fit: contain;
 }
 
 .project-gallery figure {
@@ -2382,6 +2405,11 @@ h3 {
   .project-body,
   .project-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .cansat-gallery-stack {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .project-copy,
