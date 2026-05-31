@@ -217,6 +217,103 @@ const setupSimilarityDemo = (demo) => {
 
 document.querySelectorAll('[data-demo="similarity"]').forEach(setupSimilarityDemo);
 
+const setupMipsDemo = (demo) => {
+  const instructionNodes = [...demo.querySelectorAll("[data-mips-instruction]")];
+  const registerNodes = [...demo.querySelectorAll("[data-mips-register]")];
+  const stageNodes = [...demo.querySelectorAll("[data-mips-stage]")];
+  const pc = demo.querySelector("[data-mips-pc]");
+  const currentInstruction = demo.querySelector("[data-mips-current]");
+  const aluOperation = demo.querySelector("[data-mips-alu]");
+  const note = demo.querySelector("[data-mips-note]");
+  const stepButton = demo.querySelector("[data-mips-step]");
+  const resetButton = demo.querySelector("[data-mips-reset]");
+
+  if (!instructionNodes.length || !registerNodes.length || !stageNodes.length || !pc || !currentInstruction || !aluOperation || !note || !stepButton || !resetButton) {
+    return;
+  }
+
+  const program = [
+    { text: "LOAD R1, 5", operation: "Pass immediate", destination: 1, execute: () => 5 },
+    { text: "LOAD R2, 3", operation: "Pass immediate", destination: 2, execute: () => 3 },
+    { text: "ADD R3, R1, R2", operation: "Add", destination: 3, execute: (registers) => registers[1] + registers[2] },
+    { text: "SUB R4, R1, R2", operation: "Subtract", destination: 4, execute: (registers) => registers[1] - registers[2] },
+    { text: "AND R5, R1, R2", operation: "Bitwise AND", destination: 5, execute: (registers) => registers[1] & registers[2] },
+    { text: "OR R6, R1, R2", operation: "Bitwise OR", destination: 6, execute: (registers) => registers[1] | registers[2] }
+  ];
+  const stages = ["pc", "instruction", "control", "registers", "alu", "writeback"];
+  const stageNotes = {
+    pc: "The program counter selects the next instruction.",
+    instruction: "The processor reads the current instruction.",
+    control: "Control logic selects the required datapath signals.",
+    registers: "The register file provides the required operands.",
+    alu: "The ALU performs the selected operation.",
+    writeback: "The result returns to the destination register."
+  };
+  let registers;
+  let instructionIndex;
+  let stageIndex;
+  let writtenRegister;
+
+  const render = () => {
+    const instruction = program[instructionIndex];
+    const complete = instructionIndex >= program.length;
+
+    pc.textContent = complete ? String(program.length) : String(instructionIndex);
+    currentInstruction.textContent = complete ? "Program complete" : instruction.text;
+    aluOperation.textContent = complete ? "Idle" : instruction.operation;
+    note.textContent = complete ? "Program complete. Reset the demo to run it again." : stageNotes[stages[stageIndex]];
+    stepButton.textContent = complete ? "Complete" : "Step";
+    stepButton.disabled = complete;
+
+    instructionNodes.forEach((node, index) => {
+      node.classList.toggle("is-current", index === instructionIndex && !complete);
+      node.classList.toggle("is-complete", index < instructionIndex || complete);
+    });
+
+    stageNodes.forEach((node) => {
+      node.classList.toggle("is-active", !complete && node.dataset.mipsStage === stages[stageIndex]);
+    });
+
+    registerNodes.forEach((node, index) => {
+      node.textContent = String(registers[index]);
+      node.parentElement.classList.toggle("is-written", index === writtenRegister);
+    });
+  };
+
+  const resetDemo = () => {
+    registers = Array(8).fill(0);
+    instructionIndex = 0;
+    stageIndex = 0;
+    writtenRegister = undefined;
+    render();
+  };
+
+  stepButton.addEventListener("click", () => {
+    if (instructionIndex >= program.length) {
+      return;
+    }
+
+    writtenRegister = undefined;
+
+    if (stages[stageIndex] === "writeback") {
+      const instruction = program[instructionIndex];
+      registers[instruction.destination] = instruction.execute(registers) & 0xff;
+      writtenRegister = instruction.destination;
+      instructionIndex += 1;
+      stageIndex = 0;
+    } else {
+      stageIndex += 1;
+    }
+
+    render();
+  });
+
+  resetButton.addEventListener("click", resetDemo);
+  resetDemo();
+};
+
+document.querySelectorAll('[data-demo="mips8"]').forEach(setupMipsDemo);
+
 const setupLvdDemo = (demo) => {
   const threshold = 11;
   const slider = demo.querySelector("[data-lvd-slider]");

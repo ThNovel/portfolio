@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=30" />
+    <link rel="stylesheet" href="../styles.css?v=31" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -42,7 +42,7 @@
           <p class="eyebrow">VLSI / Layout</p>
           <h1>MIPS8 Processor.</h1>
           <p class="hero-text">
-            From transistor-level schematics to silicon-ready layout: a complete 8-bit MIPS processor implementation.
+            An 8-bit MIPS-style processor implemented below the HDL level through a custom IC design flow.
           </p>
           <div class="project-nav">
             <a class="button primary" href="https://github.com/ThNovel/mips8" target="_blank" rel="noreferrer">GitHub files</a>
@@ -68,8 +68,8 @@
       <section class="project-body section-shell">
         <article class="project-copy">
           <p>
-            The MIPS8 Processor was developed as part of an Integrated Circuits Design
-            course and implements an 8-bit MIPS-compatible microprocessor using Electric VLSI.
+            The MIPS8 Processor was developed for my Integrated Circuits Design course at
+            John Brown University. It implements an 8-bit MIPS-style processor in Electric VLSI.
           </p>
           <p>
             The project followed a complete custom IC design flow, including transistor-level
@@ -84,8 +84,8 @@
             instructions.
           </p>
           <p>
-            This project provided hands-on experience with the challenges of translating
-            digital logic into a manufacturable integrated circuit.
+            The main challenge was not only making the logic work, but also translating the
+            architecture into a physical IC layout that passes verification.
           </p>
         </article>
 
@@ -99,7 +99,17 @@
               </button>
               <div class="accordion-content" id="mips-problem">
                 <div class="accordion-inner">
-                  <p>Placeholder: explain the challenge of building a processor below the HDL level, from logic behavior to transistor-level implementation.</p>
+                  <p>
+                    Building a processor below the HDL level requires more than describing
+                    behavior in Verilog or testing an architecture in software. The logic
+                    must be constructed from smaller cells, connected through schematics,
+                    translated into layout, and checked as a physical design.
+                  </p>
+                  <p>
+                    The goal was to implement an 8-bit MIPS-style processor while keeping
+                    the schematic hierarchy, layout, and functional behavior consistent
+                    throughout the custom IC flow.
+                  </p>
                 </div>
               </div>
             </div>
@@ -109,8 +119,19 @@
               </button>
               <div class="accordion-content" id="mips-architecture">
                 <div class="accordion-inner">
-                  <p>Placeholder: describe the datapath, ALU, control logic, instruction execution flow, and padframe integration.</p>
-                  <img src="../assets/7.png" alt="Layout detail placeholder for the MIPS8 architecture." />
+                  <p>
+                    Instructions move through a simple MIPS-style datapath. The datapath
+                    connects the program counter, instruction decoding, register file, ALU,
+                    control logic, and memory-related signals. The ALU performs arithmetic
+                    and logic operations, while the control logic selects the correct path
+                    for each instruction.
+                  </p>
+                  <p>
+                    The design follows a hierarchy: smaller verified cells build larger
+                    blocks, and those blocks connect at the processor level. The final
+                    integration includes the processor core and the top-level padframe.
+                  </p>
+                  <img src="../assets/7.png" alt="Detailed physical layout of the MIPS8 Processor." />
                 </div>
               </div>
             </div>
@@ -120,7 +141,20 @@
               </button>
               <div class="accordion-content" id="mips-process">
                 <div class="accordion-inner">
-                  <p>Placeholder: document schematic hierarchy, layout strategy, routing constraints, and padframe assembly.</p>
+                  <p>The project followed a custom IC design flow in Electric VLSI:</p>
+                  <ol>
+                    <li>Design and verify transistor-level cells.</li>
+                    <li>Build larger schematic blocks from verified cells.</li>
+                    <li>Connect the processor datapath and control logic.</li>
+                    <li>Create physical layouts for cells and major blocks.</li>
+                    <li>Run DRC, ERC, and NCC checks.</li>
+                    <li>Simulate behavior with IRSIM and command files.</li>
+                    <li>Integrate the completed design with the top-level padframe.</li>
+                  </ol>
+                  <p>
+                    The physical implementation required careful routing and hierarchy
+                    management so each layout block remained consistent with its schematic.
+                  </p>
                 </div>
               </div>
             </div>
@@ -130,7 +164,16 @@
               </button>
               <div class="accordion-content" id="mips-verification">
                 <div class="accordion-inner">
-                  <p>Placeholder: explain DRC, ERC, NCC, switch-level simulation, and assertion command files.</p>
+                  <p>
+                    Verification covered both physical correctness and functional behavior.
+                    DRC checked layout design rules, ERC checked electrical connection
+                    problems, and NCC confirmed that each schematic matched its layout.
+                  </p>
+                  <p>
+                    IRSIM switch-level simulation tested processor behavior during
+                    instruction execution. Test programs and assertion-based .cmd files
+                    checked expected outputs, register writes, and program counter changes.
+                  </p>
                   <pre><code>assert register_write == expected_value
 assert program_counter == next_instruction</code></pre>
                 </div>
@@ -142,7 +185,16 @@ assert program_counter == next_instruction</code></pre>
               </button>
               <div class="accordion-content" id="mips-results">
                 <div class="accordion-inner">
-                  <p>Placeholder: summarize executed instructions, verified blocks, and final chip-level integration status.</p>
+                  <p>
+                    The final processor was completed and successfully verified at the
+                    schematic and layout level. The completed design connects the datapath,
+                    ALU, control logic, and padframe through a consistent hierarchy.
+                  </p>
+                  <p>
+                    The project showed the full path from a digital processor architecture
+                    to a physical IC implementation, including layout, verification, and
+                    switch-level simulation.
+                  </p>
                 </div>
               </div>
             </div>
@@ -171,16 +223,89 @@ assert program_counter == next_instruction</code></pre>
         </aside>
       </section>
 
-      <section class="interactive-demo section-shell" data-demo="placeholder">
+      <section class="interactive-demo section-shell" data-demo="mips8">
         <div class="section-heading">
           <p class="section-kicker">Interactive Demo</p>
-          <h2>MIPS8 simulator.</h2>
+          <h2>MIPS8 instruction stepper.</h2>
+          <p class="section-intro">
+            A simplified instruction-level demo inspired by the processor. Step through a
+            short program to see how data moves across the datapath.
+          </p>
         </div>
-        <div class="demo-placeholder">
-          <p>Placeholder for a future instruction-level simulator with registers, datapath state, and step-by-step execution.</p>
+        <div class="mips-demo">
+          <div class="mips-program-panel">
+            <div class="mips-panel-heading">
+              <div>
+                <p class="demo-label">Example Program</p>
+                <h3>Instruction Memory</h3>
+              </div>
+              <span class="mips-demo-badge">Simplified demo</span>
+            </div>
+            <ol class="mips-program" data-mips-program>
+              <li data-mips-instruction>LOAD R1, 5</li>
+              <li data-mips-instruction>LOAD R2, 3</li>
+              <li data-mips-instruction>ADD R3, R1, R2</li>
+              <li data-mips-instruction>SUB R4, R1, R2</li>
+              <li data-mips-instruction>AND R5, R1, R2</li>
+              <li data-mips-instruction>OR R6, R1, R2</li>
+            </ol>
+          </div>
+
+          <div class="mips-state-panel">
+            <div class="mips-status-grid">
+              <div>
+                <span>Program Counter</span>
+                <strong data-mips-pc>0</strong>
+              </div>
+              <div>
+                <span>Current Instruction</span>
+                <strong data-mips-current>LOAD R1, 5</strong>
+              </div>
+              <div>
+                <span>ALU Operation</span>
+                <strong data-mips-alu>Pass immediate</strong>
+              </div>
+            </div>
+
+            <div class="mips-datapath" aria-label="Simplified MIPS8 datapath flow">
+              <div class="mips-stage is-active" data-mips-stage="pc">PC</div>
+              <span>→</span>
+              <div class="mips-stage" data-mips-stage="instruction">Instruction</div>
+              <span>→</span>
+              <div class="mips-stage" data-mips-stage="control">Control</div>
+              <span>→</span>
+              <div class="mips-stage" data-mips-stage="registers">Registers</div>
+              <span>→</span>
+              <div class="mips-stage" data-mips-stage="alu">ALU</div>
+              <span>→</span>
+              <div class="mips-stage" data-mips-stage="writeback">Writeback</div>
+            </div>
+
+            <div class="mips-register-section">
+              <p class="demo-label">Register File</p>
+              <div class="mips-register-grid">
+                <div><span>R0</span><strong data-mips-register="0">0</strong></div>
+                <div><span>R1</span><strong data-mips-register="1">0</strong></div>
+                <div><span>R2</span><strong data-mips-register="2">0</strong></div>
+                <div><span>R3</span><strong data-mips-register="3">0</strong></div>
+                <div><span>R4</span><strong data-mips-register="4">0</strong></div>
+                <div><span>R5</span><strong data-mips-register="5">0</strong></div>
+                <div><span>R6</span><strong data-mips-register="6">0</strong></div>
+                <div><span>R7</span><strong data-mips-register="7">0</strong></div>
+              </div>
+            </div>
+
+            <div class="mips-demo-footer">
+              <p data-mips-note>Ready to fetch the first instruction.</p>
+              <div class="mips-demo-actions">
+                <button class="button primary" type="button" data-mips-step>Step</button>
+                <button class="button secondary" type="button" data-mips-reset>Reset</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
-    <script src="../script.js?v=26"></script>
+    <script src="../script.js?v=27"></script>
   </body>
 </html>
