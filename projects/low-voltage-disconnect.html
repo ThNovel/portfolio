@@ -64,19 +64,20 @@
       <section class="project-body section-shell">
         <article class="project-copy">
           <p>
-            This PCB was developed as part of a Collaborative Lab Design project to protect
-            rechargeable battery systems from excessive discharge.
+            This custom Low Voltage Disconnect PCB was developed with Noah Rigmaiden
+            for our Collaborative Lab Design class. The goal was to create a compact and
+            practical way to protect rechargeable batteries from over-discharge.
           </p>
           <p>
-            The board continuously monitors battery voltage and automatically disconnects
-            the load once the voltage drops below a predefined threshold. This prevents the
-            batteries from operating outside their recommended range, reducing the risk of
-            permanent damage and improving long-term reliability.
+            The board monitors battery voltage and automatically disconnects the load
+            when the voltage drops below a safe threshold. This helps prevent the batteries
+            from operating outside their recommended range and supports better long-term
+            reliability.
           </p>
           <p>
-            The project involved schematic capture, PCB layout, component selection, and
-            hardware validation, resulting in a compact and practical protection solution
-            suitable for battery-powered systems.
+            The completed PCB was successfully tested and worked as expected: it supplied
+            power while the input voltage remained in the safe range and cut off the output
+            once the voltage fell below the limit.
           </p>
         </article>
 
@@ -90,7 +91,18 @@
               </button>
               <div class="accordion-content" id="lvd-problem">
                 <div class="accordion-inner">
-                  <p>Placeholder: explain the battery over-discharge risk, load behavior, and why automatic cutoff matters.</p>
+                  <p>
+                    Rechargeable batteries can lose capacity or suffer permanent damage
+                    when they are discharged below their recommended operating range. In a
+                    battery-powered system, the load can continue drawing current even after
+                    the battery reaches an unsafe voltage.
+                  </p>
+                  <p>
+                    This project addressed that problem with a compact PCB that automatically
+                    disconnects the load when the battery voltage falls below a defined
+                    threshold. The cutoff behavior protects battery life without relying on
+                    the user to manually disconnect the system.
+                  </p>
                 </div>
               </div>
             </div>
@@ -100,8 +112,17 @@
               </button>
               <div class="accordion-content" id="lvd-architecture">
                 <div class="accordion-inner">
-                  <p>Placeholder: describe the voltage sensing stage, threshold reference, switching element, and load disconnect path.</p>
-                  <img src="../assets/3-Photoroom.png" alt="3D render placeholder for the low voltage disconnect architecture." />
+                  <p>
+                    The board sits between the rechargeable battery and the load. A voltage
+                    sensing stage monitors the battery input, while a threshold detection
+                    stage determines whether the voltage remains inside the safe operating
+                    range. That decision controls a switching element on the load path.
+                  </p>
+                  <ul>
+                    <li>When the battery voltage stays above the threshold, the load remains connected.</li>
+                    <li>When the battery voltage falls below the threshold, the board disconnects the load.</li>
+                  </ul>
+                  <img src="../assets/3-Photoroom.png" alt="3D render of the Low Voltage Disconnect PCB." />
                 </div>
               </div>
             </div>
@@ -111,7 +132,17 @@
               </button>
               <div class="accordion-content" id="lvd-process">
                 <div class="accordion-inner">
-                  <p>Placeholder: document component selection, threshold calculations, schematic capture, and PCB layout choices.</p>
+                  <p>
+                    The project started with the need for a small and reliable battery
+                    protection board. Several possible approaches were discussed before
+                    selecting a custom PCB, which offered better integration, size control,
+                    and reliability than a loose wiring solution.
+                  </p>
+                  <p>
+                    The work included schematic design, component selection, PCB layout,
+                    and hardware testing. The board had to remain compact while still being
+                    practical to assemble, inspect, and validate on the bench.
+                  </p>
                 </div>
               </div>
             </div>
@@ -121,7 +152,17 @@
               </button>
               <div class="accordion-content" id="lvd-verification">
                 <div class="accordion-inner">
-                  <p>Placeholder: describe bench testing, input voltage sweeps, cutoff threshold validation, and load behavior.</p>
+                  <p>
+                    Verification was performed through bench testing while changing the
+                    input voltage across the operating range. The output remained connected
+                    while the battery voltage stayed above the cutoff threshold and
+                    disconnected once the voltage dropped below it.
+                  </p>
+                  <p>
+                    Testing also confirmed that the board could supply power safely during
+                    normal operation and that the automatic cutoff behavior worked as
+                    intended.
+                  </p>
                   <pre><code>if battery_voltage &lt; threshold:
     disconnect_load()</code></pre>
                 </div>
@@ -133,7 +174,17 @@
               </button>
               <div class="accordion-content" id="lvd-results">
                 <div class="accordion-inner">
-                  <p>Placeholder: summarize test results, threshold accuracy, and what changed between prototype iterations.</p>
+                  <p>
+                    The final PCB worked as intended during testing. When the battery voltage
+                    stayed above the cutoff point, the board supplied power to the load
+                    normally. Once the voltage dropped below the threshold, the board
+                    disconnected the output to help prevent over-discharge.
+                  </p>
+                  <p>
+                    The working prototype validated the original design idea and showed how
+                    a small custom PCB can improve reliability, integration, and battery
+                    protection in a power system.
+                  </p>
                 </div>
               </div>
             </div>
@@ -152,7 +203,7 @@
             </div>
             <div>
               <dt>Context</dt>
-              <dd>Collaborative Lab Design class project</dd>
+              <dd>Collaborative Lab Design class project with Noah Rigmaiden</dd>
             </div>
             <div>
               <dt>Status</dt>
@@ -167,7 +218,8 @@
           <p class="section-kicker">Interactive Demo</p>
           <h2>Cutoff Simulator.</h2>
           <p class="section-intro">
-            Simulate how the Low Voltage Disconnect protects rechargeable batteries from over-discharge.
+            Adjust the battery voltage to see how the load remains connected above the
+            cutoff threshold and disconnects below it.
           </p>
         </div>
         <div class="cutoff-demo">
