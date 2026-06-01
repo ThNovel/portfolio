@@ -9,7 +9,6 @@ const tactileSurfaces = document.querySelectorAll(
 );
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
-const waferGrid = document.querySelector(".wafer-die-grid");
 const waferStage = document.querySelector(".wafer-stage");
 const hero = document.querySelector(".hero");
 
@@ -23,12 +22,6 @@ const removeHashFromUrl = () => {
     window.history.replaceState(null, "", getCleanUrl());
   }
 };
-
-if (waferGrid && waferGrid.children.length === 0) {
-  for (let i = 0; i < 130; i += 1) {
-    waferGrid.appendChild(document.createElement("span"));
-  }
-}
 
 document
   .querySelectorAll(
@@ -616,46 +609,6 @@ tactileSurfaces.forEach((surface) => {
     surface.style.setProperty("--pointer-y", `${y}%`);
   });
 });
-
-if (waferStage) {
-  let waferFrame;
-  const canHoverWafer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  if (canHoverWafer) {
-    waferStage.addEventListener("pointerenter", () => {
-      waferStage.classList.add("is-revealed");
-    });
-
-    waferStage.addEventListener("pointermove", (event) => {
-      waferStage.classList.add("is-revealed");
-
-      if (waferFrame) {
-        return;
-      }
-
-      waferFrame = window.requestAnimationFrame(() => {
-        const rect = waferStage.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width) * 100;
-        const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-        waferStage.style.setProperty("--pointer-x", `${x.toFixed(1)}%`);
-        waferStage.style.setProperty("--pointer-y", `${y.toFixed(1)}%`);
-        waferFrame = undefined;
-      });
-    });
-
-    waferStage.addEventListener("pointerleave", () => {
-      if (waferFrame) {
-        window.cancelAnimationFrame(waferFrame);
-        waferFrame = undefined;
-      }
-
-      waferStage.classList.remove("is-revealed");
-      waferStage.style.setProperty("--pointer-x", "50%");
-      waferStage.style.setProperty("--pointer-y", "50%");
-    });
-  }
-}
 
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {
