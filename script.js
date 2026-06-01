@@ -610,6 +610,70 @@ tactileSurfaces.forEach((surface) => {
   });
 });
 
+if (waferStage) {
+  const waferImage = waferStage.querySelector(".wafer-image");
+  const waferLens = waferStage.querySelector(".wafer-lens");
+  const canUseLens = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lensZoom = 1.6;
+  let lensFrame;
+  let lensX = 0;
+  let lensY = 0;
+
+  if (waferImage && waferLens && canUseLens) {
+    const syncLensImage = () => {
+      waferLens.style.backgroundImage = `url("${waferImage.currentSrc || waferImage.src}")`;
+    };
+
+    const updateLens = () => {
+      const rect = waferStage.getBoundingClientRect();
+      const lensSize = waferLens.offsetWidth;
+      const x = Math.max(0, Math.min(rect.width, lensX));
+      const y = Math.max(0, Math.min(rect.height, lensY));
+
+      waferLens.style.left = `${x}px`;
+      waferLens.style.top = `${y}px`;
+      waferLens.style.backgroundSize = `${rect.width * lensZoom}px ${rect.height * lensZoom}px`;
+      waferLens.style.backgroundPosition = `${lensSize / 2 - x * lensZoom}px ${lensSize / 2 - y * lensZoom}px`;
+      lensFrame = undefined;
+    };
+
+    const requestLensUpdate = () => {
+      if (!lensFrame) {
+        lensFrame = window.requestAnimationFrame(updateLens);
+      }
+    };
+
+    waferStage.addEventListener("pointerenter", () => {
+      syncLensImage();
+      waferStage.classList.add("is-lens-active");
+    });
+
+    waferStage.addEventListener("pointermove", (event) => {
+      const rect = waferStage.getBoundingClientRect();
+
+      lensX = event.clientX - rect.left;
+      lensY = event.clientY - rect.top;
+      waferStage.classList.add("is-lens-active");
+      requestLensUpdate();
+    });
+
+    waferStage.addEventListener("pointerleave", () => {
+      waferStage.classList.remove("is-lens-active");
+    });
+
+    document.addEventListener("pointermove", (event) => {
+      if (!waferStage.contains(event.target)) {
+        waferStage.classList.remove("is-lens-active");
+      }
+    }, { passive: true });
+
+    waferImage.addEventListener("load", syncLensImage);
+    window.addEventListener("resize", requestLensUpdate);
+    syncLensImage();
+  }
+}
+
 if (heroGlassButton) {
   heroGlassButton.addEventListener("click", () => {
     const target = document.querySelector(heroGlassButton.dataset.scrollTarget);

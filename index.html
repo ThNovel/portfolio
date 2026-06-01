@@ -8,15 +8,24 @@
       content="Portfolio of Iker Garcia Morales, Electrical Engineering Student focused on integrated circuit design, VLSI, computer architecture, PCB design, and custom silicon."
     />
     <title>Iker Garcia Morales | Electrical Engineering</title>
-    <link rel="icon" type="image/png" href="assets/logo-Photoroom.png" />
-    <link rel="apple-touch-icon" href="assets/logo-Photoroom.png" />
+    <link rel="icon" type="image/png" href="assets/favicon-wafer.png" />
+    <link rel="apple-touch-icon" href="assets/favicon-wafer.png" />
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      href="assets/wafer-hero-1200.avif"
+      imagesrcset="assets/wafer-hero-640.avif 640w, assets/wafer-hero-1200.avif 1200w, assets/wafer-hero-1800.avif 1800w"
+      imagesizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
+      fetchpriority="high"
+    />
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
     </script>
     <!-- Google Analytics 4: configure the Measurement ID in analytics-config.js. -->
     <script src="analytics-config.js?v=1"></script>
     <script src="analytics.js?v=1"></script>
-    <link rel="stylesheet" href="styles.css?v=32" />
+    <link rel="stylesheet" href="styles.css?v=33" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -62,7 +71,23 @@
 
         <div class="hero-visual" aria-label="Interactive silicon wafer preview">
           <div class="wafer-stage" aria-hidden="true">
-            <img class="wafer-image" src="assets/logo-Photoroom.png" alt="" />
+            <picture>
+              <source
+                type="image/avif"
+                srcset="assets/wafer-hero-640.avif 640w, assets/wafer-hero-1200.avif 1200w, assets/wafer-hero-1800.avif 1800w"
+                sizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
+              />
+              <img
+                class="wafer-image"
+                src="assets/wafer-hero-1200.png"
+                width="1200"
+                height="960"
+                alt=""
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
+            <div class="wafer-lens"></div>
           </div>
         </div>
       </section>
@@ -250,6 +275,6 @@
       <a href="#top">Back to top</a>
     </footer>
 
-    <script src="script.js?v=28"></script>
+    <script src="script.js?v=31"></script>
   </body>
 </html>
