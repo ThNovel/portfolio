@@ -13,9 +13,9 @@
     <link
       rel="preload"
       as="image"
-      type="image/avif"
-      href="assets/wafer-hero-1200.avif"
-      imagesrcset="assets/wafer-hero-640.avif 640w, assets/wafer-hero-1200.avif 1200w, assets/wafer-hero-1800.avif 1800w"
+      type="image/png"
+      href="assets/wafer-hero-1200.png"
+      imagesrcset="assets/wafer-hero-640.png 640w, assets/wafer-hero-1200.png 1200w"
       imagesizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
       fetchpriority="high"
     />
@@ -25,7 +25,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in analytics-config.js. -->
     <script src="analytics-config.js?v=1"></script>
     <script src="analytics.js?v=1"></script>
-    <link rel="stylesheet" href="styles.css?v=35" />
+    <link rel="stylesheet" href="styles.css?v=36" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -75,14 +75,11 @@
         <div class="hero-visual" aria-label="Interactive silicon wafer preview">
           <div class="wafer-stage" aria-hidden="true">
             <picture>
-              <source
-                type="image/avif"
-                srcset="assets/wafer-hero-640.avif 640w, assets/wafer-hero-1200.avif 1200w, assets/wafer-hero-1800.avif 1800w"
-                sizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
-              />
               <img
                 class="wafer-image"
                 src="assets/wafer-hero-1200.png"
+                srcset="assets/wafer-hero-640.png 640w, assets/wafer-hero-1200.png 1200w"
+                sizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
                 width="1200"
                 height="960"
                 alt=""
@@ -301,37 +298,69 @@
         </div>
       </section>
 
-      <section id="silicio-16" class="section-shell current-section">
+      <section id="currently-building" class="section-shell current-section">
         <div class="section-heading">
-          <p class="section-kicker">Currently Building</p>
-          <h2>Silicio-16.</h2>
+          <p class="section-kicker">In Progress</p>
+          <h2>Currently Building.</h2>
         </div>
-        <div class="current-card">
-          <div class="current-copy">
-            <p class="current-lead">
-              A custom 16-bit CPU architecture designed from ISA planning to FPGA implementation.
-            </p>
-            <p>
-              Silicio-16 is currently in the planning stage. The first goal is to define the
-              instruction set, memory model, registers, and execution flow before moving into
-              simulation and RTL design.
-            </p>
-            <div class="roadmap" aria-label="Silicio-16 roadmap">
-              <span class="is-active">ISA planning</span>
-              <span>Simulator</span>
-              <span>RTL core</span>
-              <span>FPGA implementation</span>
-              <span>Silicon exploration</span>
+        <div class="current-grid">
+          <article id="silicio-16" class="current-card">
+            <div class="current-copy">
+              <h3>Silicio-16.</h3>
+              <p class="current-lead">
+                A custom 16-bit CPU architecture designed from ISA planning to FPGA implementation.
+              </p>
+              <p>
+                Silicio-16 is currently in the planning stage. The first goal is to define the
+                instruction set, memory model, registers, and execution flow before moving into
+                simulation and RTL design.
+              </p>
+              <div class="roadmap" aria-label="Silicio-16 roadmap">
+                <span class="is-active">ISA planning</span>
+                <span>Simulator</span>
+                <span>RTL core</span>
+                <span>FPGA implementation</span>
+                <span>Silicon exploration</span>
+              </div>
+              <div class="progress-meta">
+                <span>Planning stage</span>
+                <span>5%</span>
+              </div>
+              <div class="progress-track" aria-label="Silicio-16 progress: 5%">
+                <span style="width: 5%"></span>
+              </div>
             </div>
-            <div class="progress-meta">
-              <span>Planning stage</span>
-              <span>5%</span>
+            <span class="status-badge">In planning</span>
+          </article>
+
+          <article class="current-card">
+            <div class="current-copy">
+              <h3>Perceptron.</h3>
+              <p class="current-lead">
+                A small hardware perceptron project exploring weighted sums, threshold logic, and digital neural computation.
+              </p>
+              <p>
+                This project is currently in the research stage. The first goal is to understand
+                the architecture, math, and hardware constraints before choosing the final
+                implementation path.
+              </p>
+              <div class="roadmap" aria-label="Perceptron roadmap">
+                <span class="is-active">Research</span>
+                <span>Architecture</span>
+                <span>HDL model</span>
+                <span>Simulation</span>
+                <span>Portfolio case study</span>
+              </div>
+              <div class="progress-meta">
+                <span>Research stage</span>
+                <span>5%</span>
+              </div>
+              <div class="progress-track" aria-label="Perceptron progress: 5%">
+                <span style="width: 5%"></span>
+              </div>
             </div>
-            <div class="progress-track" aria-label="Silicio-16 progress: 5%">
-              <span style="width: 5%"></span>
-            </div>
-          </div>
-          <span class="status-badge">In planning</span>
+            <span class="status-badge">Research</span>
+          </article>
         </div>
       </section>
 
@@ -341,70 +370,27 @@
           <h2>Writing.</h2>
         </div>
 
-        <div class="writing-group">
-          <div class="writing-group-heading">
+        <div class="writing-overview-grid">
+          <a class="writing-overview-card tactile-surface" href="writing/notes.html">
+            <p class="tag">Engineering writing</p>
             <h3>Notes</h3>
-            <p>Engineering notes and technical writing in progress.</p>
-          </div>
-          <div class="writing-grid">
-            <article class="writing-card">
-              <p class="tag">Engineering note</p>
-              <h4>What I learned building an 8-bit processor in Electric VLSI</h4>
-              <p>Notes coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Engineering note</p>
-              <h4>Why I want to build Silicio-16</h4>
-              <p>Notes coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Engineering note</p>
-              <h4>Debugging telemetry loss in a CanSat mission</h4>
-              <p>Notes coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Engineering note</p>
-              <h4>My path into chip design</h4>
-              <p>Notes coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Engineering note</p>
-              <h4>Verilog vs VHDL from an EE student perspective</h4>
-              <p>Notes coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-          </div>
-        </div>
-
-        <div class="writing-group">
-          <div class="writing-group-heading">
+            <p>Technical notes about VLSI, PCB design, computer architecture, and engineering lessons.</p>
+            <div class="project-tags" aria-label="Topics">
+              <span>VLSI</span><span>PCB</span><span>Digital Logic</span>
+            </div>
+            <span class="status-badge">Drafts</span>
+            <span class="project-action">Click to see</span>
+          </a>
+          <a class="writing-overview-card tactile-surface" href="writing/behind-the-work.html">
+            <p class="tag">Personal writing</p>
             <h3>Behind the Work</h3>
-            <p>Personal notes about the ideas, tools, and routines behind the projects.</p>
-          </div>
-          <div class="writing-grid">
-            <article class="writing-card">
-              <p class="tag">Personal note</p>
-              <h4>Tools I use to build and study</h4>
-              <p>Personal note coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Personal note</p>
-              <h4>My desk and workflow</h4>
-              <p>Personal note coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-            <article class="writing-card">
-              <p class="tag">Personal note</p>
-              <h4>Books, music, and ideas I keep returning to</h4>
-              <p>Personal note coming soon.</p>
-              <span class="status-badge">Draft</span>
-            </article>
-          </div>
+            <p>Personal notes about tools, routines, books, music, workflows, and the ideas behind the projects.</p>
+            <div class="project-tags" aria-label="Topics">
+              <span>Tools</span><span>Workflow</span><span>Personal</span>
+            </div>
+            <span class="status-badge">Drafts</span>
+            <span class="project-action">Click to see</span>
+          </a>
         </div>
       </section>
 
@@ -428,6 +414,6 @@
 
     <div class="copy-toast" role="status" aria-live="polite">Mail copiado</div>
 
-    <script src="script.js?v=32"></script>
+    <script src="script.js?v=33"></script>
   </body>
 </html>

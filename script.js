@@ -26,7 +26,7 @@ const removeHashFromUrl = () => {
 
 document
   .querySelectorAll(
-    ".section-heading, .intro-grid, .featured-card, .skills-section, .current-section, .contact-section, .work-card, .expertise-item, .tool-grid span, .current-card, .writing-group, .writing-card, .project-copy, .project-deep-dive, .project-facts, .project-gallery figure"
+    ".section-heading, .intro-grid, .featured-card, .skills-section, .current-section, .contact-section, .work-card, .expertise-item, .tool-grid span, .current-card, .writing-overview-card, .writing-card, .project-copy, .project-deep-dive, .project-facts, .project-gallery figure"
   )
   .forEach((element) => {
     element.classList.add("scroll-reveal");
