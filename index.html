@@ -13,9 +13,9 @@
     <link
       rel="preload"
       as="image"
-      type="image/png"
-      href="assets/wafer-hero-1200.png"
-      imagesrcset="assets/wafer-hero-640.png 640w, assets/wafer-hero-1200.png 1200w"
+      type="image/avif"
+      href="assets/wafer-hero-1200-v2.avif"
+      imagesrcset="assets/wafer-hero-640-v2.avif 640w, assets/wafer-hero-1200-v2.avif 1200w"
       imagesizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
       fetchpriority="high"
     />
@@ -25,7 +25,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in analytics-config.js. -->
     <script src="analytics-config.js?v=1"></script>
     <script src="analytics.js?v=1"></script>
-    <link rel="stylesheet" href="styles.css?v=37" />
+    <link rel="stylesheet" href="styles.css?v=38" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -75,6 +75,11 @@
         <div class="hero-visual" aria-label="Interactive silicon wafer preview">
           <div class="wafer-stage" aria-hidden="true">
             <picture>
+              <source
+                type="image/avif"
+                srcset="assets/wafer-hero-640-v2.avif 640w, assets/wafer-hero-1200-v2.avif 1200w"
+                sizes="(max-width: 560px) 330px, (max-width: 860px) 430px, 590px"
+              />
               <img
                 class="wafer-image"
                 src="assets/wafer-hero-1200.png"
@@ -414,6 +419,6 @@
 
     <div class="copy-toast" role="status" aria-live="polite">Mail copiado</div>
 
-    <script src="script.js?v=33"></script>
+    <script src="script.js?v=35"></script>
   </body>
 </html>
