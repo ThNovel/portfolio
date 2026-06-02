@@ -373,7 +373,7 @@ h3 {
 .hero-visual {
   position: relative;
   min-height: 570px;
-  overflow: clip;
+  overflow: visible;
   perspective: 1100px;
 }
 
@@ -452,27 +452,11 @@ h3 {
 }
 
 .wafer-lens {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 136px;
-  height: 136px;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 16px 22px rgba(9, 9, 9, 0.12));
-  -webkit-mask-image: radial-gradient(circle, #000 52%, rgba(0, 0, 0, 0.76) 70%, transparent 100%);
-  mask-image: radial-gradient(circle, #000 52%, rgba(0, 0, 0, 0.76) 70%, transparent 100%);
-  transform: translate3d(-50%, -50%, 0) scale(0.92);
-  transition: opacity 360ms var(--ease-apple), transform 480ms var(--ease-apple);
-  will-change: left, top, background-position, opacity, transform;
+  display: none;
 }
 
 .wafer-stage.is-lens-active .wafer-lens {
-  opacity: 0.96;
-  transform: translate3d(-50%, -50%, 0) scale(1);
+  display: none;
 }
 
 @keyframes wafer-idle-float {
