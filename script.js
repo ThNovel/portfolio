@@ -5,7 +5,7 @@ const themeToggle = document.querySelector(".theme-toggle");
 const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
 const accordions = document.querySelectorAll("[data-accordion]");
 const tactileSurfaces = document.querySelectorAll(
-  ".tactile-surface, .work-card, .button, .contact-links a, .contact-links button, .tool-grid span"
+  ".tactile-surface, .work-card, .expertise-item, .current-card, .writing-card, .button, .contact-links a, .contact-links button, .tool-grid span"
 );
 const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
