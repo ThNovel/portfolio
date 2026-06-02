@@ -409,6 +409,9 @@ h3 {
   display: block;
   width: 100%;
   height: 100%;
+  animation: wafer-idle-float 7.5s ease-in-out infinite;
+  transform-origin: 52% 48%;
+  will-change: transform;
 }
 
 .wafer-image {
@@ -423,6 +426,11 @@ h3 {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .wafer-stage:hover picture,
+  .wafer-stage.is-lens-active picture {
+    animation-play-state: paused;
+  }
+
   .wafer-stage:hover .wafer-image {
     filter: drop-shadow(0 34px 46px rgba(9, 9, 9, 0.18));
     transform: scale(1.06);
@@ -451,6 +459,16 @@ h3 {
 .wafer-stage.is-lens-active .wafer-lens {
   opacity: 0.96;
   transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+@keyframes wafer-idle-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.35deg);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(0.45deg);
+  }
 }
 
 @media (hover: none), (pointer: coarse) {
