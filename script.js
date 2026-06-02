@@ -630,9 +630,6 @@ if (waferStage) {
       const lensRadius = lensSize / 2;
       const x = Math.max(lensRadius, Math.min(rect.width - lensRadius, lensX));
       const y = Math.max(lensRadius, Math.min(rect.height - lensRadius, lensY));
-      const normalizedX = (lensX - rect.width / 2) / (rect.width * 0.32);
-      const normalizedY = (lensY - rect.height / 2) / (rect.height * 0.27);
-      const isInsideSafeEllipse = (normalizedX ** 2) + (normalizedY ** 2) <= 1;
       const tiltX = ((x / rect.width) - 0.5) * 5;
       const tiltY = ((y / rect.height) - 0.5) * -4;
 
@@ -642,7 +639,7 @@ if (waferStage) {
       waferLens.style.backgroundPosition = `${lensSize / 2 - x * lensZoom}px ${lensSize / 2 - y * lensZoom}px`;
       waferStage.style.setProperty("--wafer-tilt-x", `${tiltX.toFixed(2)}deg`);
       waferStage.style.setProperty("--wafer-tilt-y", `${tiltY.toFixed(2)}deg`);
-      waferStage.classList.toggle("is-lens-active", isInsideSafeEllipse);
+      waferStage.classList.add("is-lens-active");
       lensFrame = undefined;
     };
 
