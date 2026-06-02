@@ -11,6 +11,7 @@ const heroGlassButton = document.querySelector("[data-scroll-target]");
 const projectBubbles = document.querySelectorAll(".project-bubble");
 const waferStage = document.querySelector(".wafer-stage");
 const hero = document.querySelector(".hero");
+const copyToast = document.querySelector(".copy-toast");
 
 const getCleanUrl = () => {
   const cleanPath = window.location.pathname.replace(/index\.html$/, "");
@@ -25,7 +26,7 @@ const removeHashFromUrl = () => {
 
 document
   .querySelectorAll(
-    ".section-heading, .intro-grid, .skills-section, .current-section, .contact-section, .work-card, .expertise-item, .tool-grid span, .current-card, .project-copy, .project-deep-dive, .project-facts, .project-gallery figure"
+    ".section-heading, .intro-grid, .featured-card, .skills-section, .current-section, .contact-section, .work-card, .expertise-item, .tool-grid span, .current-card, .writing-group, .writing-card, .project-copy, .project-deep-dive, .project-facts, .project-gallery figure"
   )
   .forEach((element) => {
     element.classList.add("scroll-reveal");
@@ -103,19 +104,17 @@ const copyText = async (text) => {
 };
 
 copyEmailButtons.forEach((button) => {
-  const originalText = button.textContent.trim();
-
   button.addEventListener("click", async () => {
     try {
       await copyText(button.dataset.copyEmail);
-      button.textContent = "Copied";
+      if (copyToast) {
+        copyToast.classList.remove("is-visible");
+        window.requestAnimationFrame(() => copyToast.classList.add("is-visible"));
+        window.setTimeout(() => copyToast.classList.remove("is-visible"), 1600);
+      }
     } catch (error) {
-      button.textContent = button.dataset.copyEmail;
+      return;
     }
-
-    window.setTimeout(() => {
-      button.textContent = originalText;
-    }, 1400);
   });
 });
 
@@ -630,11 +629,15 @@ if (waferStage) {
       const lensSize = waferLens.offsetWidth;
       const x = Math.max(0, Math.min(rect.width, lensX));
       const y = Math.max(0, Math.min(rect.height, lensY));
+      const tiltX = ((x / rect.width) - 0.5) * 5;
+      const tiltY = ((y / rect.height) - 0.5) * -4;
 
       waferLens.style.left = `${x}px`;
       waferLens.style.top = `${y}px`;
       waferLens.style.backgroundSize = `${rect.width * lensZoom}px ${rect.height * lensZoom}px`;
       waferLens.style.backgroundPosition = `${lensSize / 2 - x * lensZoom}px ${lensSize / 2 - y * lensZoom}px`;
+      waferStage.style.setProperty("--wafer-tilt-x", `${tiltX.toFixed(2)}deg`);
+      waferStage.style.setProperty("--wafer-tilt-y", `${tiltY.toFixed(2)}deg`);
       lensFrame = undefined;
     };
 
@@ -660,6 +663,8 @@ if (waferStage) {
 
     waferStage.addEventListener("pointerleave", () => {
       waferStage.classList.remove("is-lens-active");
+      waferStage.style.setProperty("--wafer-tilt-x", "0deg");
+      waferStage.style.setProperty("--wafer-tilt-y", "0deg");
     });
 
     document.addEventListener("pointermove", (event) => {
