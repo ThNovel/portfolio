@@ -1633,6 +1633,81 @@ h3 {
   padding-bottom: 72px;
 }
 
+.personal-story {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+  gap: 72px;
+  padding: 14px 0 112px;
+}
+
+.personal-story-intro {
+  position: sticky;
+  top: 118px;
+  align-self: start;
+}
+
+.personal-story-intro h2 {
+  max-width: 8ch;
+  margin-top: 12px;
+}
+
+.personal-story-intro > p:last-child {
+  max-width: 440px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.story-chapters {
+  border-top: 1px solid var(--soft-line);
+}
+
+.story-chapter {
+  padding: 34px 0 42px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.story-chapter h3,
+.journal-entry h3 {
+  margin: 14px 0 12px;
+  font-size: 1.44rem;
+}
+
+.story-chapter > p:last-child,
+.journal-entry > p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+
+.favorite-things {
+  padding: 92px 0 112px;
+  border-top: 1px solid var(--line);
+}
+
+.journal-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--soft-line);
+}
+
+.journal-entry {
+  display: grid;
+  grid-template-columns: minmax(116px, 0.24fr) minmax(160px, 0.42fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: baseline;
+  padding: 28px 0 30px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.journal-entry h3,
+.journal-entry > p {
+  margin: 0;
+}
+
 .writing-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3004,6 +3079,29 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .personal-story {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-bottom: 82px;
+  }
+
+  .personal-story-intro {
+    position: static;
+  }
+
+  .personal-story-intro h2 {
+    max-width: 11ch;
+  }
+
+  .favorite-things {
+    padding: 72px 0 82px;
+  }
+
+  .journal-entry {
+    grid-template-columns: minmax(112px, 0.3fr) minmax(150px, 0.48fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+
   .work-grid,
   .expertise-grid {
     grid-template-columns: 1fr;
@@ -3266,6 +3364,28 @@ h3 {
 
   .writing-page-hero {
     padding: 72px 0 36px;
+  }
+
+  .personal-story {
+    gap: 24px;
+    padding: 8px 0 64px;
+  }
+
+  .story-chapter {
+    padding: 26px 0 30px;
+  }
+
+  .favorite-things {
+    padding: 56px 0 64px;
+  }
+
+  .journal-entry {
+    display: block;
+    padding: 24px 0 26px;
+  }
+
+  .journal-entry h3 {
+    margin: 12px 0 10px;
   }
 
   .mips-status-grid {
