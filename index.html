@@ -25,7 +25,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in analytics-config.js. -->
     <script src="analytics-config.js?v=1"></script>
     <script src="analytics.js?v=1"></script>
-    <link rel="stylesheet" href="styles.css?v=42" />
+    <link rel="stylesheet" href="styles.css?v=43" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -342,29 +342,32 @@
             <div class="current-copy">
               <h3>Perceptron.</h3>
               <p class="current-lead">
-                A small hardware perceptron project exploring weighted sums, threshold logic, and digital neural computation.
+                A small hardware neural layer made of 4 digital perceptrons working in parallel.
               </p>
               <p>
-                This project is currently in the research stage. The first goal is to understand
-                the architecture, math, and hardware constraints before choosing the final
-                implementation path.
+                This project started as research, but it is now entering the first Verilog
+                implementation stage. The current goal is to build, simulate, and understand a
+                simple 4-perceptron layer before improving the architecture. Each perceptron
+                computes a weighted sum from the input bits, compares it against a threshold, and
+                produces one output bit.
               </p>
               <div class="roadmap" aria-label="Perceptron roadmap">
-                <span class="is-active">Research</span>
-                <span>Architecture</span>
-                <span>HDL model</span>
-                <span>Simulation</span>
+                <span class="is-complete">Research</span>
+                <span class="is-active">Single perceptron prototype</span>
+                <span>4-perceptron layer</span>
+                <span>Verilog simulation</span>
+                <span>Testbench and waveform validation</span>
                 <span>Portfolio case study</span>
               </div>
               <div class="progress-meta">
-                <span>Research stage</span>
-                <span>5%</span>
+                <span>Early HDL implementation</span>
+                <span>15%</span>
               </div>
-              <div class="progress-track" aria-label="Perceptron progress: 5%">
-                <span style="width: 5%"></span>
+              <div class="progress-track" aria-label="Perceptron progress: 15%">
+                <span style="width: 15%"></span>
               </div>
             </div>
-            <span class="status-badge">Research</span>
+            <span class="status-badge">Early HDL</span>
           </article>
         </div>
       </section>
