@@ -96,6 +96,34 @@ body {
   transition: background 600ms var(--ease-apple), color 600ms var(--ease-apple);
 }
 
+body > .site-header,
+body > main,
+body > .site-footer {
+  animation: page-fade-in 720ms var(--ease-apple) both;
+}
+
+body > main {
+  animation-delay: 70ms;
+}
+
+body > .site-footer {
+  animation-delay: 120ms;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
