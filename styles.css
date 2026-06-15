@@ -99,7 +99,7 @@ body {
 body > .site-header,
 body > main,
 body > .site-footer {
-  animation: page-fade-in 720ms var(--ease-apple) both;
+  animation: page-fade-in 720ms var(--ease-apple) backwards;
 }
 
 body > main {
