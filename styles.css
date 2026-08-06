@@ -1510,6 +1510,17 @@ h3 {
   backdrop-filter: blur(22px) saturate(1.45);
 }
 
+.current-card-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.current-card-link:focus-visible {
+  outline: 2px solid rgba(184, 135, 25, 0.48);
+  outline-offset: 4px;
+}
+
 .current-card h3 {
   margin-bottom: 14px;
   font-size: 1.42rem;
@@ -1903,6 +1914,224 @@ h3 {
   max-height: 560px;
   object-fit: contain;
   background: transparent;
+}
+
+.silicio-hero {
+  grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
+}
+
+.silicio-hero-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.silicio-hero-copy h1,
+.silicio-hero-copy .hero-text,
+.silicio-hero-copy .silicio-summary {
+  margin: 0;
+}
+
+.silicio-summary,
+.silicio-section-note {
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.68;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-row span {
+  border: 1px solid var(--soft-line);
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: var(--graphite);
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  font-size: 0.78rem;
+  font-weight: 720;
+}
+
+.silicio-status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.silicio-status-grid div,
+.silicio-spec-grid div {
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+}
+
+.silicio-status-grid span,
+.silicio-spec-grid span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 780;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.silicio-status-grid strong,
+.silicio-spec-grid strong {
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.silicio-waveform-hero,
+.silicio-diagram {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(184, 135, 25, 0.12), transparent 18rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--panel) 88%, transparent), color-mix(in srgb, var(--panel-strong) 88%, transparent));
+  box-shadow: 0 28px 70px rgba(9, 9, 9, 0.16);
+  backdrop-filter: blur(22px) saturate(1.45);
+}
+
+.silicio-waveform-hero img,
+.silicio-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+}
+
+.silicio-waveform-hero img {
+  min-height: 330px;
+  object-fit: contain;
+}
+
+.silicio-waveform-hero figcaption,
+.silicio-diagram figcaption {
+  border-top: 1px solid var(--soft-line);
+  padding: 12px 14px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.silicio-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.silicio-diagram {
+  margin-bottom: 18px;
+}
+
+.silicio-diagram img {
+  max-height: 640px;
+  object-fit: contain;
+}
+
+.verification-accordion .accordion-trigger {
+  gap: 12px;
+}
+
+.verification-accordion .accordion-trigger::after {
+  flex: 0 0 auto;
+}
+
+.test-status {
+  margin-left: auto;
+  border: 1px solid rgba(184, 135, 25, 0.28);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--accent);
+  background: rgba(184, 135, 25, 0.08);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.verification-accordion .accordion-inner img {
+  max-height: none;
+  border: 1px solid var(--soft-line);
+  border-radius: calc(var(--radius) - 2px);
+  background: rgba(9, 9, 9, 0.04);
+}
+
+.case-roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.case-roadmap div {
+  min-height: 112px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+:root[data-theme="dark"] .case-roadmap div {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.case-roadmap span,
+.case-roadmap strong {
+  display: block;
+}
+
+.case-roadmap span {
+  color: var(--ink);
+  font-weight: 780;
+  line-height: 1.35;
+}
+
+.case-roadmap strong {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-roadmap .is-complete {
+  border-color: rgba(184, 135, 25, 0.24);
+}
+
+.case-roadmap .is-complete strong {
+  color: var(--accent);
+}
+
+.case-roadmap .is-current {
+  border-color: rgba(184, 135, 25, 0.52);
+  background:
+    radial-gradient(circle at 20% 16%, rgba(184, 135, 25, 0.22), transparent 12rem),
+    color-mix(in srgb, var(--panel) 76%, transparent);
+  box-shadow: 0 18px 44px rgba(184, 135, 25, 0.12);
+}
+
+.case-roadmap .is-current strong {
+  color: var(--accent);
+}
+
+.case-roadmap .is-upcoming,
+.case-roadmap .is-future {
+  opacity: 0.72;
+}
+
+.project-facts a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(184, 135, 25, 0.42);
+  text-underline-offset: 0.18em;
 }
 
 .project-gallery {
@@ -3182,6 +3411,15 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .silicio-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .silicio-spec-grid,
+  .case-roadmap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .cansat-gallery-stack {
     grid-column: auto;
     grid-row: auto;
@@ -3256,6 +3494,10 @@ h3 {
   .project-media img,
   .project-gallery img {
     max-height: 440px;
+  }
+
+  .silicio-waveform-hero img {
+    min-height: 240px;
   }
 
   .site-footer {
@@ -3461,6 +3703,20 @@ h3 {
   .current-card {
     flex-direction: column;
     padding: 22px;
+  }
+
+  .silicio-status-grid,
+  .silicio-spec-grid,
+  .case-roadmap {
+    grid-template-columns: 1fr;
+  }
+
+  .silicio-waveform-hero img {
+    min-height: 190px;
+  }
+
+  .test-status {
+    display: none;
   }
 
   .project-copy p {

@@ -25,7 +25,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in analytics-config.js. -->
     <script src="analytics-config.js?v=1"></script>
     <script src="analytics.js?v=1"></script>
-    <link rel="stylesheet" href="styles.css?v=45" />
+    <link rel="stylesheet" href="styles.css?v=46" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -309,37 +309,41 @@
           <h2>Currently Building.</h2>
         </div>
         <div class="current-grid">
-          <article id="silicio-16" class="current-card">
+          <a
+            id="silicio-16"
+            class="current-card current-card-link"
+            href="projects/silicio-16.html"
+            aria-label="Open the Silicio-16 project page"
+          >
             <div class="current-copy">
               <h3>Silicio-16.</h3>
               <p class="current-lead">
                 A custom 16-bit CPU architecture designed from ISA design to FPGA implementation.
               </p>
               <p>
-                Silicio-16 has completed most of its core RTL modules. The current focus is
-                integrating the datapath, control unit, memories, and simulated framebuffer into a
-                functional CPU core.
+                Silicio-16 is now running full ISA verification and moving into framebuffer
+                and graphics demos before future FPGA integration.
               </p>
               <div class="roadmap" aria-label="Silicio-16 roadmap">
                 <span class="is-complete">ISA design</span>
                 <span class="is-complete">Datapath modules</span>
-                <span class="is-active">RTL integration</span>
-                <span>Instruction execution</span>
-                <span>Framebuffer simulation</span>
-                <span>Full verification</span>
+                <span class="is-complete">RTL integration</span>
+                <span class="is-complete">Instruction execution</span>
+                <span class="is-complete">Full verification</span>
+                <span class="is-active">Framebuffer / Graphics Demo</span>
                 <span>FPGA implementation</span>
                 <span>Silicon exploration</span>
               </div>
               <div class="progress-meta">
                 <span>Overall project progress</span>
-                <span>45%</span>
+                <span>70%</span>
               </div>
-              <div class="progress-track" aria-label="Silicio-16 progress: 45%">
-                <span style="width: 45%"></span>
+              <div class="progress-track" aria-label="Silicio-16 progress: 70%">
+                <span style="width: 70%"></span>
               </div>
             </div>
-            <span class="status-badge">RTL Integration</span>
-          </article>
+            <span class="status-badge">Framebuffer Demo</span>
+          </a>
 
           <article class="current-card">
             <div class="current-copy">
@@ -425,6 +429,6 @@
 
     <div class="copy-toast" role="status" aria-live="polite">Mail copiado</div>
 
-    <script src="script.js?v=40"></script>
+    <script src="script.js?v=41"></script>
   </body>
 </html>

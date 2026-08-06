@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Silicio-16 custom 16-bit processor project by Iker Garcia Morales." />
+    <title>Silicio-16 | Iker Garcia Morales</title>
+    <link rel="icon" type="image/png" href="../assets/favicon-wafer.png" />
+    <link rel="apple-touch-icon" href="../assets/favicon-wafer.png" />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    </script>
+    <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
+    <script src="../analytics-config.js?v=1"></script>
+    <script src="../analytics.js?v=1"></script>
+    <link rel="stylesheet" href="../styles.css?v=46" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Iker Garcia Morales home">
+        <span class="brand-mark">IGM</span>
+        <span class="brand-name">Iker Garcia Morales</span>
+      </a>
+      <div class="header-controls">
+        <nav class="nav-links" aria-label="Project navigation">
+          <a href="../#work">Work</a>
+          <a href="../#about">Me</a>
+          <a href="../#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Turn on night mode" aria-pressed="false">
+          <span aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="project-page silicio-page">
+      <section class="project-hero silicio-hero section-shell">
+        <div class="silicio-hero-copy">
+          <p class="eyebrow">Computer Architecture / RTL</p>
+          <h1>Silicio-16.</h1>
+          <p class="hero-text">A compact 16-bit processor built from first principles.</p>
+          <p class="silicio-summary">
+            Silicio-16 is a custom multicycle CPU designed in SystemVerilog. The project
+            explores a complete small processor flow: custom ISA design, RTL datapath
+            implementation, control sequencing, memory behavior, and verification through
+            simulation waveforms.
+          </p>
+          <div class="tag-row" aria-label="Silicio-16 technologies">
+            <span>SystemVerilog</span>
+            <span>16-bit</span>
+            <span>Multicycle</span>
+            <span>Custom ISA</span>
+          </div>
+          <div class="project-nav">
+            <a class="button primary" href="https://github.com/ikeermora/silicio-16" target="_blank" rel="noreferrer">GitHub repository</a>
+            <a class="button secondary" href="https://github.com/ikeermora/silicio-16/tree/main/docs" target="_blank" rel="noreferrer">Documentation</a>
+            <a class="button secondary" href="../#currently-building">Back to portfolio</a>
+          </div>
+          <div class="silicio-status-grid" aria-label="Silicio-16 project status">
+            <div>
+              <span>Current status</span>
+              <strong>Framebuffer / Graphics Demo</strong>
+            </div>
+            <div>
+              <span>Overall progress</span>
+              <strong>70%</strong>
+            </div>
+          </div>
+        </div>
+        <figure class="silicio-waveform-hero">
+          <img
+            src="../assets/silicio-16/waveform-execution.svg"
+            alt="Silicio-16 Fibonacci program execution waveform from simulation."
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption>Real execution waveform from the Silicio-16 simulation artifacts.</figcaption>
+        </figure>
+      </section>
+
+      <section class="project-body section-shell">
+        <article class="project-copy">
+          <p class="section-kicker">Overview</p>
+          <p>
+            Silicio-16 is a compact 16-bit processor project built to understand how a CPU
+            moves from instruction set design into hardware execution. The goal is not to
+            make a large processor, but to build a clear one: small enough to reason about,
+            complete enough to execute real programs, and structured enough to keep growing.
+          </p>
+          <p>
+            The project currently includes a custom ISA, a multicycle RTL datapath, a
+            finite-state control unit, separate instruction and data memory, regression
+            testing, and program-level simulations. Current work is focused on framebuffer
+            and graphics demos before future FPGA integration.
+          </p>
+        </article>
+
+        <section class="project-deep-dive" aria-labelledby="silicio-architecture-title">
+          <p class="section-kicker">Architecture & Datapath</p>
+          <h2 id="silicio-architecture-title">Processor structure.</h2>
+
+          <div class="silicio-spec-grid" aria-label="Silicio-16 processor specifications">
+            <div><span>Data width</span><strong>16-bit</strong></div>
+            <div><span>Instruction width</span><strong>16-bit</strong></div>
+            <div><span>Registers</span><strong>8 general-purpose</strong></div>
+            <div><span>Execution model</span><strong>Multicycle</strong></div>
+            <div><span>ISA</span><strong>Custom</strong></div>
+            <div><span>Memory</span><strong>Separate instruction and data memory</strong></div>
+          </div>
+
+          <figure class="silicio-diagram">
+            <img
+              src="../assets/silicio-16/datapath-schematic-v2.png"
+              alt="Silicio-16 datapath schematic showing the program counter, instruction register, register file, ALU, memory paths, and control signals."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Datapath schematic from the Silicio-16 architecture documentation.</figcaption>
+          </figure>
+
+          <div class="accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="silicio-datapath-core">
+                Datapath Core
+              </button>
+              <div class="accordion-content" id="silicio-datapath-core">
+                <div class="accordion-inner">
+                  <p>
+                    The datapath connects the program counter, instruction register, register
+                    file, A/B operand registers, ALU, ALU output register, immediate extension,
+                    memory data register, and flags register. These blocks form the path used
+                    by arithmetic, memory, and control-flow instructions.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-control">
+                Control & Execution
+              </button>
+              <div class="accordion-content" id="silicio-control">
+                <div class="accordion-inner">
+                  <p>
+                    A centralized finite-state control unit sequences each instruction across
+                    multiple cycles. This keeps the processor small and readable while still
+                    allowing instruction fetch, decode, execute, memory access, and writeback
+                    behavior to happen in a controlled order.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-memory">
+                Memory System
+              </button>
+              <div class="accordion-content" id="silicio-memory">
+                <div class="accordion-inner">
+                  <p>
+                    Silicio-16 uses separate instruction and data memory. Instruction memory
+                    feeds the fetch path, while data memory supports LOAD and STORE behavior
+                    through the memory data register and ALU-generated addresses.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-isa">
+                ISA Coverage
+              </button>
+              <div class="accordion-content" id="silicio-isa">
+                <div class="accordion-inner">
+                  <p>
+                    The current ISA includes arithmetic, bitwise, comparison, move, immediate,
+                    memory, branch, jump, and halt instructions. The regression suite checks
+                    the main behavior across these instruction families.
+                  </p>
+                  <pre><code>NOP ADD SUB AND OR XOR SIM MOV LDI LOAD STORE CMP BEQ BNE JMP HALT</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="project-deep-dive" aria-labelledby="silicio-verification-title">
+          <p class="section-kicker">Verification & Waveforms</p>
+          <h2 id="silicio-verification-title">Simulation evidence.</h2>
+          <p class="silicio-section-note">
+            These entries use waveform assets generated from the existing Silicio-16 VCD files
+            and testbenches in the repository.
+          </p>
+
+          <div class="accordion verification-accordion" data-accordion>
+            <div class="accordion-item is-open">
+              <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="silicio-add-test">
+                <span>ADD Test</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-add-test">
+                <div class="accordion-inner">
+                  <p>
+                    The arithmetic regression exercises the ADD datapath after loading source
+                    operands into registers. The waveform shows the active clocked execution
+                    path used by the CPU integration test.
+                  </p>
+                  <img src="../assets/silicio-16/waveform-add.svg" alt="Silicio-16 ADD test waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-memory-test">
+                <span>Load & Store Test</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-memory-test">
+                <div class="accordion-inner">
+                  <p>
+                    The memory test stores a register value into data memory and loads it back
+                    into another register. This validates the address path, memory write
+                    control, memory data register, and register writeback behavior.
+                  </p>
+                  <img src="../assets/silicio-16/waveform-memory.svg" alt="Silicio-16 LOAD and STORE waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-flow-test">
+                <span>Flow Control</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-flow-test">
+                <div class="accordion-inner">
+                  <p>
+                    Flow-control testing covers program counter updates through jump, NOP,
+                    halt stability, and branch offset behavior. The waveform keeps the focus
+                    on PC movement and instruction sequencing.
+                  </p>
+                  <img src="../assets/silicio-16/waveform-control-flow.svg" alt="Silicio-16 flow-control waveform showing program counter and instruction sequencing." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-conditional-test">
+                <span>Conditional Flow Control</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-conditional-test">
+                <div class="accordion-inner">
+                  <p>
+                    Conditional-flow tests include BEQ and BNE cases where the branch is taken
+                    and not taken. The regression also includes a negative branch offset case
+                    to check signed control-flow behavior.
+                  </p>
+                  <img src="../assets/silicio-16/waveform-control-flow.svg" alt="Silicio-16 conditional branch waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-alu-test">
+                <span>ALU Test</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-alu-test">
+                <div class="accordion-inner">
+                  <p>
+                    The standalone ALU simulation sweeps the arithmetic and bitwise operation
+                    paths. This checks the core combinational block before relying on it inside
+                    the full CPU.
+                  </p>
+                  <img src="../assets/silicio-16/waveform-alu.svg" alt="Silicio-16 ALU operation sweep waveform." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-regression-test">
+                <span>Full ISA Regression</span>
+                <span class="test-status is-pass">Passed</span>
+              </button>
+              <div class="accordion-content" id="silicio-regression-test">
+                <div class="accordion-inner">
+                  <p>
+                    The full CPU regression runs 30 checks across arithmetic, bitwise, memory,
+                    branch, jump, and halt behavior. The repository regression reports zero
+                    failures for the integrated RTL design.
+                  </p>
+                  <pre><code>Silicio-16 regression: 30 checks, 0 failures
+[PASS] ALL SILICIO-16 RTL TESTS PASSED</code></pre>
+                  <img src="../assets/silicio-16/waveform-regression.svg" alt="Silicio-16 full ISA regression waveform showing checks and failures." loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="project-deep-dive" aria-labelledby="silicio-roadmap-title">
+          <p class="section-kicker">Project Roadmap</p>
+          <h2 id="silicio-roadmap-title">Where it stands.</h2>
+          <div class="case-roadmap" aria-label="Silicio-16 roadmap">
+            <div class="is-complete"><span>Architecture & ISA</span><strong>Complete</strong></div>
+            <div class="is-complete"><span>Datapath RTL</span><strong>Complete</strong></div>
+            <div class="is-complete"><span>RTL Bring-Up</span><strong>Complete</strong></div>
+            <div class="is-complete"><span>First Program Execution</span><strong>Complete</strong></div>
+            <div class="is-complete"><span>Full ISA Verification</span><strong>Complete</strong></div>
+            <div class="is-current"><span>Framebuffer / Graphics Demo</span><strong>Current</strong></div>
+            <div class="is-upcoming"><span>FPGA Integration</span><strong>Upcoming</strong></div>
+            <div class="is-future"><span>Silicon Exploration</span><strong>Future</strong></div>
+          </div>
+          <div class="progress-meta">
+            <span>Overall project progress</span>
+            <span>70%</span>
+          </div>
+          <div class="progress-track" aria-label="Silicio-16 progress: 70%">
+            <span style="width: 70%"></span>
+          </div>
+        </section>
+
+        <aside class="project-facts">
+          <dl>
+            <div>
+              <dt>GitHub repository</dt>
+              <dd><a href="https://github.com/ikeermora/silicio-16" target="_blank" rel="noreferrer">github.com/ikeermora/silicio-16</a></dd>
+            </div>
+            <div>
+              <dt>Architecture documentation</dt>
+              <dd><a href="https://github.com/ikeermora/silicio-16/blob/main/docs/datapath.md" target="_blank" rel="noreferrer">Datapath documentation</a></dd>
+            </div>
+            <div>
+              <dt>ISA documentation</dt>
+              <dd><a href="https://github.com/ikeermora/silicio-16/blob/main/docs/isa.md" target="_blank" rel="noreferrer">Instruction set documentation</a></dd>
+            </div>
+            <div>
+              <dt>Verification material</dt>
+              <dd><a href="https://github.com/ikeermora/silicio-16/tree/main/tb" target="_blank" rel="noreferrer">Testbenches and regression files</a></dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Iker Garcia Morales</p>
+      <a href="../#top">Back to top</a>
+    </footer>
+
+    <script src="../script.js?v=41"></script>
+  </body>
+</html>

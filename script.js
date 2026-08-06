@@ -143,6 +143,14 @@ accordions.forEach((accordion) => {
         openAccordionItem(item, !item.classList.contains("is-open"));
       });
     }
+
+    item.querySelectorAll("img").forEach((image) => {
+      image.addEventListener("load", () => {
+        if (item.classList.contains("is-open")) {
+          openAccordionItem(item, true);
+        }
+      });
+    });
   });
 });
 
