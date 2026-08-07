@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=46" />
+    <link rel="stylesheet" href="../styles.css?v=47" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -70,13 +70,15 @@
             </div>
           </div>
         </div>
-        <figure class="silicio-waveform-hero">
-          <img
-            src="../assets/silicio-16/waveform-execution.svg"
-            alt="Silicio-16 Fibonacci program execution waveform from simulation."
-            fetchpriority="high"
-            decoding="async"
-          />
+        <figure class="silicio-waveform-hero waveform-frame">
+          <a href="../assets/silicio-16/real-fibonacci-program.png" target="_blank" rel="noreferrer" aria-label="Open Fibonacci Program waveform at full resolution">
+            <img
+              src="../assets/silicio-16/real-fibonacci-program.png"
+              alt="Real Simple Silicon waveform capture of the Silicio-16 Fibonacci program showing memory writes and datapath activity."
+              fetchpriority="high"
+              decoding="async"
+            />
+          </a>
           <figcaption>Real execution waveform from the Silicio-16 simulation artifacts.</figcaption>
         </figure>
       </section>
@@ -188,31 +190,35 @@
           <p class="section-kicker">Verification & Waveforms</p>
           <h2 id="silicio-verification-title">Simulation evidence.</h2>
           <p class="silicio-section-note">
-            These entries use waveform assets generated from the existing Silicio-16 VCD files
-            and testbenches in the repository.
+            These entries use real Simple Silicon waveform screenshots captured during
+            Silicio-16 verification.
           </p>
 
           <div class="accordion verification-accordion" data-accordion>
             <div class="accordion-item is-open">
               <button class="accordion-trigger" type="button" aria-expanded="true" aria-controls="silicio-add-test">
                 <span>ADD Test</span>
-                <span class="test-status is-pass">Passed</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
               <div class="accordion-content" id="silicio-add-test">
                 <div class="accordion-inner">
                   <p>
-                    The arithmetic regression exercises the ADD datapath after loading source
-                    operands into registers. The waveform shows the active clocked execution
-                    path used by the CPU integration test.
+                    This capture checks the ADD execution path and shows the ALU result moving
+                    through the processor datapath during the test.
                   </p>
-                  <img src="../assets/silicio-16/waveform-add.svg" alt="Silicio-16 ADD test waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-add-test.png" target="_blank" rel="noreferrer" aria-label="Open ADD Test waveform at full resolution">
+                      <img src="../assets/silicio-16/real-add-test.png" alt="Real Simple Silicon waveform capture for the Silicio-16 ADD test." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>ADD Test: validates arithmetic result propagation through the ALU path.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-memory-test">
                 <span>Load & Store Test</span>
-                <span class="test-status is-pass">Passed</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
               <div class="accordion-content" id="silicio-memory-test">
                 <div class="accordion-inner">
@@ -221,14 +227,19 @@
                     into another register. This validates the address path, memory write
                     control, memory data register, and register writeback behavior.
                   </p>
-                  <img src="../assets/silicio-16/waveform-memory.svg" alt="Silicio-16 LOAD and STORE waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-load-store-test.png" target="_blank" rel="noreferrer" aria-label="Open Load and Store Test waveform at full resolution">
+                      <img src="../assets/silicio-16/real-load-store-test.png" alt="Real Simple Silicon waveform capture for the Silicio-16 load and store test." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>Load & Store Test: confirms memory data can be written and read back through the CPU path.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-flow-test">
                 <span>Flow Control</span>
-                <span class="test-status is-pass">Passed</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
               <div class="accordion-content" id="silicio-flow-test">
                 <div class="accordion-inner">
@@ -237,14 +248,19 @@
                     halt stability, and branch offset behavior. The waveform keeps the focus
                     on PC movement and instruction sequencing.
                   </p>
-                  <img src="../assets/silicio-16/waveform-control-flow.svg" alt="Silicio-16 flow-control waveform showing program counter and instruction sequencing." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-flow-control.png" target="_blank" rel="noreferrer" aria-label="Open Flow Control waveform at full resolution">
+                      <img src="../assets/silicio-16/real-flow-control.png" alt="Real Simple Silicon waveform capture for Silicio-16 flow control." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>Flow Control: shows program counter movement through the control path.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-conditional-test">
                 <span>Conditional Flow Control</span>
-                <span class="test-status is-pass">Passed</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
               <div class="accordion-content" id="silicio-conditional-test">
                 <div class="accordion-inner">
@@ -253,41 +269,92 @@
                     and not taken. The regression also includes a negative branch offset case
                     to check signed control-flow behavior.
                   </p>
-                  <img src="../assets/silicio-16/waveform-control-flow.svg" alt="Silicio-16 conditional branch waveform from the CPU regression simulation." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-conditional-flow.png" target="_blank" rel="noreferrer" aria-label="Open Conditional Flow Control waveform at full resolution">
+                      <img src="../assets/silicio-16/real-conditional-flow.png" alt="Real Simple Silicon waveform capture for Silicio-16 conditional flow control." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>Conditional Flow Control: validates conditional PC updates and control sequencing.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-alu-test">
-                <span>ALU Test</span>
-                <span class="test-status is-pass">Passed</span>
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-alu-basic-test">
+                <span>ALU Test 1 — Basic Operations</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
-              <div class="accordion-content" id="silicio-alu-test">
+              <div class="accordion-content" id="silicio-alu-basic-test">
                 <div class="accordion-inner">
                   <p>
-                    The standalone ALU simulation sweeps the arithmetic and bitwise operation
-                    paths. This checks the core combinational block before relying on it inside
-                    the full CPU.
+                    This test loads 12 and 5 into R1 and R2, executes SUB, AND, OR, and XOR,
+                    stores the results in R3 through R6, and ends with HALT.
                   </p>
-                  <img src="../assets/silicio-16/waveform-alu.svg" alt="Silicio-16 ALU operation sweep waveform." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-alu-basic.png" target="_blank" rel="noreferrer" aria-label="Open ALU Test 1 waveform at full resolution">
+                      <img src="../assets/silicio-16/real-alu-basic.png" alt="Real Simple Silicon waveform capture for Silicio-16 ALU Test 1 basic operations." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>ALU Test 1: proves the basic arithmetic and bitwise operation paths.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-regression-test">
-                <span>Full ISA Regression</span>
-                <span class="test-status is-pass">Passed</span>
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-alu-sim-mov-test">
+                <span>ALU Test 2 — SIM and MOV</span>
+                <span class="test-status is-pass">Verified</span>
               </button>
-              <div class="accordion-content" id="silicio-regression-test">
+              <div class="accordion-content" id="silicio-alu-sim-mov-test">
                 <div class="accordion-inner">
                   <p>
-                    The full CPU regression runs 30 checks across arithmetic, bitwise, memory,
-                    branch, jump, and halt behavior. The repository regression reports zero
-                    failures for the integrated RTL design.
+                    This test loads 0x00FF and 0x000F, executes the custom SIM instruction,
+                    copies the result with MOV, and ends with HALT.
                   </p>
-                  <pre><code>Silicio-16 regression: 30 checks, 0 failures
-[PASS] ALL SILICIO-16 RTL TESTS PASSED</code></pre>
-                  <img src="../assets/silicio-16/waveform-regression.svg" alt="Silicio-16 full ISA regression waveform showing checks and failures." loading="lazy" decoding="async" />
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-alu-sim-mov.png" target="_blank" rel="noreferrer" aria-label="Open ALU Test 2 waveform at full resolution">
+                      <img src="../assets/silicio-16/real-alu-sim-mov.png" alt="Real Simple Silicon waveform capture for Silicio-16 ALU Test 2 SIM and MOV." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>ALU Test 2: verifies the custom SIM instruction and MOV result transfer.</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-reverse-flow-test">
+                <span>Reverse Conditional Flow and Halt</span>
+                <span class="test-status is-pass">Verified</span>
+              </button>
+              <div class="accordion-content" id="silicio-reverse-flow-test">
+                <div class="accordion-inner">
+                  <p>
+                    This test loads R1 = 5 and R2 = 10, uses CMP and BNE to skip address 4,
+                    uses JMP to skip address 6, and reaches HALT at address 7.
+                  </p>
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-reverse-conditional-halt.png" target="_blank" rel="noreferrer" aria-label="Open Reverse Conditional Flow and Halt waveform at full resolution">
+                      <img src="../assets/silicio-16/real-reverse-conditional-halt.png" alt="Real Simple Silicon waveform capture for Silicio-16 reverse conditional flow and halt." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>Reverse Conditional Flow and Halt: checks branch decisions, jump behavior, and final HALT sequencing.</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="silicio-fibonacci-test">
+                <span>Fibonacci Program</span>
+                <span class="test-status is-pass">Verified</span>
+              </button>
+              <div class="accordion-content" id="silicio-fibonacci-test">
+                <div class="accordion-inner">
+                  <p>
+                    This is the strongest system-level demonstration because it combines
+                    arithmetic, looping, register operations, control flow, and memory writes.
+                  </p>
+                  <figure class="waveform-frame">
+                    <a href="../assets/silicio-16/real-fibonacci-program.png" target="_blank" rel="noreferrer" aria-label="Open Fibonacci Program waveform at full resolution">
+                      <img src="../assets/silicio-16/real-fibonacci-program.png" alt="Real Simple Silicon waveform capture for the Silicio-16 Fibonacci program." loading="lazy" decoding="async" />
+                    </a>
+                    <figcaption>Fibonacci Program: system-level execution with arithmetic, loop control, registers, and memory writes.</figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
@@ -344,6 +411,6 @@
       <a href="../#top">Back to top</a>
     </footer>
 
-    <script src="../script.js?v=41"></script>
+    <script src="../script.js?v=42"></script>
   </body>
 </html>
