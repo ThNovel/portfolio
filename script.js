@@ -128,8 +128,16 @@ const openAccordionItem = (item, open) => {
 
   item.classList.toggle("is-open", open);
   trigger.setAttribute("aria-expanded", String(open));
-  content.style.maxHeight = open ? `${content.scrollHeight}px` : "0px";
+  content.style.maxHeight = open ? `${content.scrollHeight + 24}px` : "0px";
   content.style.opacity = open ? "1" : "0";
+};
+
+const refreshOpenAccordions = () => {
+  accordions.forEach((accordion) => {
+    accordion.querySelectorAll(".accordion-item.is-open").forEach((item) => {
+      openAccordionItem(item, true);
+    });
+  });
 };
 
 accordions.forEach((accordion) => {
@@ -153,6 +161,96 @@ accordions.forEach((accordion) => {
     });
   });
 });
+
+window.addEventListener("load", refreshOpenAccordions);
+window.addEventListener("resize", refreshOpenAccordions);
+
+if (document.fonts) {
+  document.fonts.ready.then(refreshOpenAccordions);
+}
+
+if ("ResizeObserver" in window) {
+  const accordionResizeObserver = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      const item = entry.target.closest(".accordion-item");
+
+      if (item && item.classList.contains("is-open")) {
+        openAccordionItem(item, true);
+      }
+    });
+  });
+
+  accordions.forEach((accordion) => {
+    accordion.querySelectorAll(".accordion-inner").forEach((inner) => {
+      accordionResizeObserver.observe(inner);
+    });
+  });
+}
+
+const setupImageMagnifiers = () => {
+  const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!supportsHover || prefersReducedMotion) {
+    return;
+  }
+
+  document.querySelectorAll("[data-magnifier]").forEach((target) => {
+    const image = target.querySelector("img");
+    const lens = target.querySelector(".magnifier-lens");
+
+    if (!image || !lens) {
+      return;
+    }
+
+    let frameRequest = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+
+    const updateLens = () => {
+      frameRequest = 0;
+
+      const rect = image.getBoundingClientRect();
+      const x = Math.max(0, Math.min(pointerX - rect.left, rect.width));
+      const y = Math.max(0, Math.min(pointerY - rect.top, rect.height));
+      const zoom = 1.85;
+      const lensSize = lens.offsetWidth || 160;
+
+      lens.style.left = `${x}px`;
+      lens.style.top = `${y}px`;
+      lens.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
+      lens.style.backgroundSize = `${rect.width * zoom}px ${rect.height * zoom}px`;
+      lens.style.backgroundPosition = `${-(x * zoom - lensSize / 2)}px ${-(y * zoom - lensSize / 2)}px`;
+    };
+
+    const requestLensUpdate = (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (!frameRequest) {
+        frameRequest = window.requestAnimationFrame(updateLens);
+      }
+    };
+
+    target.addEventListener("pointerenter", (event) => {
+      target.classList.add("is-magnifying");
+      requestLensUpdate(event);
+    });
+
+    target.addEventListener("pointermove", requestLensUpdate);
+
+    target.addEventListener("pointerleave", () => {
+      target.classList.remove("is-magnifying");
+
+      if (frameRequest) {
+        window.cancelAnimationFrame(frameRequest);
+        frameRequest = 0;
+      }
+    });
+  });
+};
+
+setupImageMagnifiers();
 
 const setupSimilarityDemo = (demo) => {
   const xRow = demo.querySelector('[data-bit-row="x"]');

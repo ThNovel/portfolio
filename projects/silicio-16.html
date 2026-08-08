@@ -13,7 +13,7 @@
     <!-- Google Analytics 4: configure the Measurement ID in ../analytics-config.js. -->
     <script src="../analytics-config.js?v=1"></script>
     <script src="../analytics.js?v=1"></script>
-    <link rel="stylesheet" href="../styles.css?v=47" />
+    <link rel="stylesheet" href="../styles.css?v=48" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
@@ -114,12 +114,15 @@
           </div>
 
           <figure class="silicio-diagram">
-            <img
-              src="../assets/silicio-16/datapath-schematic-v2.png"
-              alt="Silicio-16 datapath schematic showing the program counter, instruction register, register file, ALU, memory paths, and control signals."
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="magnify-target" data-magnifier>
+              <img
+                src="../assets/silicio-16/datapath-schematic-v2.png"
+                alt="Silicio-16 datapath schematic showing the program counter, instruction register, register file, ALU, memory paths, and control signals."
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="magnifier-lens" aria-hidden="true"></span>
+            </div>
             <figcaption>Datapath schematic from the Silicio-16 architecture documentation.</figcaption>
           </figure>
 
@@ -411,6 +414,6 @@
       <a href="../#top">Back to top</a>
     </footer>
 
-    <script src="../script.js?v=42"></script>
+    <script src="../script.js?v=43"></script>
   </body>
 </html>

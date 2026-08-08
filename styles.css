@@ -2079,6 +2079,45 @@ h3 {
   object-fit: contain;
 }
 
+.magnify-target {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.magnifier-lens {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(120px, 15vw, 180px);
+  height: clamp(120px, 15vw, 180px);
+  border: 1px solid rgba(184, 135, 25, 0.34);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 18px 48px rgba(9, 9, 9, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.96);
+  transition:
+    opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: left, top, background-position, opacity, transform;
+}
+
+:root[data-theme="dark"] .magnifier-lens {
+  border-color: rgba(213, 166, 51, 0.4);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.magnify-target.is-magnifying .magnifier-lens {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .verification-accordion .accordion-trigger {
   gap: 12px;
 }
@@ -2348,6 +2387,10 @@ h3 {
   overflow: hidden;
   opacity: 0;
   transition: max-height 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 180ms ease;
+}
+
+.accordion-item.is-open .accordion-content {
+  overflow: visible;
 }
 
 .accordion-inner {
@@ -3322,6 +3365,20 @@ h3 {
   }
 
   .wafer-lens {
+    display: none;
+  }
+
+  .magnifier-lens {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .magnify-target {
+    cursor: default;
+  }
+
+  .magnifier-lens {
     display: none;
   }
 }
