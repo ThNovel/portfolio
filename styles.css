@@ -1557,6 +1557,12 @@ h3 {
   margin-top: 12px;
 }
 
+.section-action-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+
 .roadmap {
   display: grid;
   gap: 12px;
